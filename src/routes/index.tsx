@@ -316,6 +316,42 @@ function Index() {
         </div>
       </div>
 
+      {/* ── Stats counters ───────────────────────────────── */}
+      <section className="px-6 py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { to: 1999, suffix: "", label: "Established", plain: true },
+            { to: 25, suffix: "+", label: "Years of training" },
+            { to: 10, suffix: "", label: "Career courses" },
+            { to: 50000, suffix: "+", label: "Students targeted" },
+          ].map((s, i) => (
+            <Reveal key={s.label} delay={i * 110}>
+              <div className="border-t border-border pt-6">
+                <div className="font-display text-[clamp(2.2rem,4.5vw,3.4rem)] font-semibold leading-none text-spectrum">
+                  {s.plain ? s.to : <CountUp to={s.to} suffix={s.suffix} />}
+                </div>
+                <div className="mt-3 text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                  {s.label}
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Campus parallax band ─────────────────────────── */}
+      <section className="px-6 pb-10">
+        <div className="mx-auto max-w-7xl">
+          <ParallaxImage
+            src={campusImg}
+            alt="Students learning multimedia design at the Prism Multimedia training lab"
+            ratio="aspect-[16/7]"
+            zoom={0.18}
+            shift={60}
+          />
+        </div>
+      </section>
+
       {/* ── About ────────────────────────────────────────── */}
       <section id="about" className="px-6 py-28">
         <div className="mx-auto max-w-7xl">
