@@ -1,6 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal, RevealText } from "@/components/Reveal";
+import { CountUp, Parallax, ParallaxImage, ScrollProgress } from "@/components/Motion";
 import prismAsset from "@/assets/prism.jpg.asset.json";
+import campusImg from "@/assets/campus.jpg";
+import corporateImg from "@/assets/corporate.jpg";
+import graphicImg from "@/assets/course-graphic-design.jpg";
+import animationImg from "@/assets/course-animation.jpg";
+import uiuxImg from "@/assets/course-uiux.jpg";
+import videoImg from "@/assets/course-video-editing.jpg";
+import marketingImg from "@/assets/course-digital-marketing.jpg";
+import portfolioImg from "@/assets/works-portfolio.jpg";
 import {
   ArrowUpRight,
   Clock,
@@ -9,6 +18,7 @@ import {
   Phone,
   Sparkles,
 } from "lucide-react";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
