@@ -530,7 +530,11 @@ function Index() {
       <section className="section-ink px-6 py-28">
         <div className="mx-auto max-w-7xl">
           <SectionLabel>Student Works</SectionLabel>
+          <h2 className="mt-8 max-w-3xl font-display text-[clamp(1.7rem,3.2vw,2.6rem)] font-semibold leading-tight">
+            <RevealText text="Students create professional-quality projects that become impressive portfolios." />
+          </h2>
           <div className="mt-14 grid gap-6 md:grid-cols-3">
+
             {[
               { img: portfolioImg, label: "Branding & Print" },
               { img: uiuxImg, label: "UI / UX Case Studies" },
