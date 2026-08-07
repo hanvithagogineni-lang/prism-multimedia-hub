@@ -190,7 +190,9 @@ function ListRows({ items }: { items: string[] }) {
 function Index() {
   return (
     <div className="relative overflow-hidden bg-background">
+      <ScrollProgress />
       {/* ambient spectrum aurora */}
+
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-10 opacity-90 blur-[120px] animate-aurora"
