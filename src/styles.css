@@ -142,3 +142,207 @@
     color: var(--color-foreground);
   }
 }
+
+/* ── Prism Multimedia design system ───────────────────────────── */
+:root {
+  --radius: 0.25rem;
+  --background: oklch(0.09 0.012 275);
+  --foreground: oklch(0.97 0.005 280);
+  --card: oklch(0.13 0.016 275);
+  --card-foreground: oklch(0.97 0.005 280);
+  --popover: oklch(0.13 0.016 275);
+  --popover-foreground: oklch(0.97 0.005 280);
+  --primary: oklch(0.72 0.19 250);
+  --primary-foreground: oklch(0.12 0.02 275);
+  --secondary: oklch(0.18 0.02 275);
+  --secondary-foreground: oklch(0.97 0.005 280);
+  --muted: oklch(0.17 0.018 275);
+  --muted-foreground: oklch(0.68 0.02 275);
+  --accent: oklch(0.78 0.2 145);
+  --accent-foreground: oklch(0.12 0.02 275);
+  --destructive: oklch(0.62 0.23 27);
+  --destructive-foreground: oklch(0.98 0.005 280);
+  --border: oklch(0.98 0.01 280 / 12%);
+  --input: oklch(0.98 0.01 280 / 16%);
+  --ring: oklch(0.72 0.19 250);
+
+  --spectrum: linear-gradient(
+    90deg,
+    oklch(0.62 0.24 25),
+    oklch(0.8 0.19 75),
+    oklch(0.86 0.2 130),
+    oklch(0.75 0.16 200),
+    oklch(0.55 0.24 265),
+    oklch(0.6 0.28 320)
+  );
+  --spectrum-soft: linear-gradient(
+    120deg,
+    oklch(0.62 0.24 25 / 0.28),
+    oklch(0.86 0.2 130 / 0.24),
+    oklch(0.55 0.24 265 / 0.3)
+  );
+  --shadow-glow: 0 30px 90px -30px oklch(0.55 0.24 265 / 0.55);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@theme inline {
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+/* Scroll reveal primitives */
+.reveal {
+  transition:
+    opacity 1s var(--ease-out-expo),
+    transform 1.1s var(--ease-out-expo),
+    clip-path 1.2s var(--ease-out-expo);
+  will-change: opacity, transform;
+}
+.reveal-up {
+  opacity: 0;
+  transform: translateY(1.35em);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-2rem);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(1.06);
+}
+.reveal-mask {
+  clip-path: inset(0 0 100% 0);
+  opacity: 0.001;
+}
+.reveal[data-shown="true"] {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 0 0);
+}
+.word-mask {
+  display: inline-flex;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+/* Spectrum helpers */
+.text-spectrum {
+  background: var(--spectrum);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.rule-spectrum {
+  height: 1px;
+  background: var(--spectrum);
+  opacity: 0.65;
+}
+
+/* Hero prism animation */
+@keyframes prism-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-16px) rotate(-1.2deg) scale(1.015);
+  }
+}
+@keyframes beam-sweep {
+  0% {
+    transform: translateX(-8%) scaleX(0.9);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateX(4%) scaleX(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-8%) scaleX(0.9);
+    opacity: 0.55;
+  }
+}
+@keyframes prism-in {
+  from {
+    opacity: 0;
+    transform: translateY(48px) scale(0.9);
+    filter: blur(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+  }
+}
+@keyframes aurora {
+  0% {
+    transform: translate3d(-6%, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(6%, -4%, 0) rotate(8deg);
+  }
+  100% {
+    transform: translate3d(-6%, 0, 0) rotate(0deg);
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-prism-in {
+  animation: prism-in 1.6s var(--ease-out-expo) both;
+}
+.animate-prism-float {
+  animation: prism-float 9s ease-in-out infinite;
+}
+.animate-beam {
+  animation: beam-sweep 7s ease-in-out infinite;
+}
+.animate-aurora {
+  animation: aurora 22s ease-in-out infinite;
+}
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
+
+.hover-lift {
+  transition:
+    transform 0.5s var(--ease-out-expo),
+    border-color 0.5s ease,
+    background-color 0.5s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-6px);
+  border-color: oklch(0.98 0.01 280 / 30%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .animate-prism-in,
+  .animate-prism-float,
+  .animate-beam,
+  .animate-aurora,
+  .animate-marquee {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}
