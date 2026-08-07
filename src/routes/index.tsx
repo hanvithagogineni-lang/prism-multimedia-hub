@@ -205,7 +205,7 @@ function Index() {
           </nav>
           <a
             href="tel:+919701334133"
-            className="rounded-full border border-primary/40 bg-primary/10 text-primary px-4 py-2 text-xs uppercase tracking-[0.18em] text-foreground transition-colors hover:bg-secondary"
+            className="rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-xs uppercase tracking-[0.18em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
           >
             Enquire
           </a>
