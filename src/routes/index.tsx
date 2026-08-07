@@ -530,10 +530,20 @@ function Index() {
       <section className="section-ink px-6 py-28">
         <div className="mx-auto max-w-7xl">
           <SectionLabel>Student Works</SectionLabel>
-          <h2 className="mt-8 max-w-3xl font-display text-[clamp(1.7rem,3.2vw,2.6rem)] font-semibold leading-tight">
-            <RevealText text="Students create professional-quality projects that become impressive portfolios." />
-          </h2>
-          <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {[
+              { img: portfolioImg, label: "Branding & Print" },
+              { img: uiuxImg, label: "UI / UX Case Studies" },
+              { img: animationImg, label: "Animation & VFX Reels" },
+            ].map((w, i) => (
+              <Reveal key={w.label} variant="mask" delay={i * 120}>
+                <ParallaxImage src={w.img} alt={w.label} ratio="aspect-[4/3]" />
+                <p className="mt-4 font-display text-base">{w.label}</p>
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
+
             {works.map((w, i) => (
               <Reveal key={w} variant="mask" delay={i * 60}>
                 <div className="group relative flex h-40 items-end bg-card p-5 transition-colors hover:bg-secondary">
