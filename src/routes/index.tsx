@@ -224,9 +224,7 @@ function Index() {
             <h1 className="font-display text-[clamp(2.6rem,6.4vw,5.1rem)] font-semibold leading-[0.98]">
               <RevealText text="Best Multimedia" />
               <br />
-              <span className="text-spectrum">
-                <RevealText text="Training Institute" delay={220} />
-              </span>
+              <RevealText text="Training Institute" delay={220} wordClassName="text-spectrum" />
             </h1>
             <Reveal delay={420}>
               <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">

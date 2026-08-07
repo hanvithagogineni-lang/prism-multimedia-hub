@@ -48,10 +48,12 @@ export function Reveal({ children, className, delay = 0, variant = "up" }: Revea
 export function RevealText({
   text,
   className,
+  wordClassName,
   delay = 0,
 }: {
   text: string;
   className?: string;
+  wordClassName?: string;
   delay?: number;
 }) {
   const { ref, shown } = useInView<HTMLSpanElement>();
@@ -62,7 +64,7 @@ export function RevealText({
         <span key={`${w}-${i}`} className="word-mask">
           <span
             data-shown={shown ? "true" : "false"}
-            className="reveal reveal-up inline-block"
+            className={cn("reveal reveal-up inline-block", wordClassName)}
             style={{ transitionDelay: `${delay + i * 55}ms` }}
           >
             {w}
