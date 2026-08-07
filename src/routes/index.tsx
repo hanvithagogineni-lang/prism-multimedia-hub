@@ -183,7 +183,7 @@ function Index() {
       {/* ambient spectrum aurora */}
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 opacity-60 blur-[110px] animate-aurora"
+        className="pointer-events-none fixed inset-0 -z-10 opacity-90 blur-[120px] animate-aurora"
         style={{ background: "var(--spectrum-soft)" }}
       />
 
@@ -205,7 +205,7 @@ function Index() {
           </nav>
           <a
             href="tel:+919701334133"
-            className="rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.18em] text-foreground transition-colors hover:bg-secondary"
+            className="rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-xs uppercase tracking-[0.18em] text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
           >
             Enquire
           </a>
@@ -238,7 +238,7 @@ function Index() {
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <a
                   href="#courses"
-                  className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-transform duration-500 hover:-translate-y-1"
+                  className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-[0_16px_36px_-18px_var(--primary)] transition-transform duration-500 hover:-translate-y-1"
                 >
                   Explore Courses
                   <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -259,13 +259,13 @@ function Index() {
               <div className="animate-prism-float relative">
                 <div
                   aria-hidden
-                  className="animate-beam absolute left-1/2 top-1/2 h-40 w-[130%] -translate-y-1/2 rounded-full opacity-80 blur-2xl"
+                  className="animate-beam absolute left-1/2 top-1/2 h-40 w-[130%] -translate-y-1/2 rounded-full opacity-40 blur-2xl"
                   style={{ background: "var(--spectrum)" }}
                 />
                 <img
                   src={prismAsset.url}
                   alt="Light beam refracting through a glass prism into a rainbow spectrum"
-                  className="relative w-full rounded-3xl border border-border object-cover mix-blend-screen"
+                  className="relative w-full rounded-3xl border border-border object-cover"
                   style={{ boxShadow: "var(--shadow-glow)" }}
                 />
               </div>
@@ -353,7 +353,7 @@ function Index() {
       </section>
 
       {/* ── Courses ──────────────────────────────────────── */}
-      <section id="courses" className="px-6 py-28">
+      <section id="courses" className="section-ink px-6 py-28">
         <div className="mx-auto max-w-7xl">
           <SectionLabel>Courses Offered</SectionLabel>
           <h2 className="mt-8 font-display text-[clamp(1.9rem,3.6vw,3rem)] font-semibold">
@@ -442,7 +442,7 @@ function Index() {
       </section>
 
       {/* ── Student works ────────────────────────────────── */}
-      <section className="px-6 py-28">
+      <section className="section-ink px-6 py-28">
         <div className="mx-auto max-w-7xl">
           <SectionLabel>Student Works</SectionLabel>
           <h2 className="mt-8 max-w-3xl font-display text-[clamp(1.7rem,3.2vw,2.6rem)] font-semibold leading-tight">
