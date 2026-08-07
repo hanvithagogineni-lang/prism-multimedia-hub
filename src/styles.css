@@ -343,7 +343,8 @@ body {
 }
 .hover-lift:hover {
   transform: translateY(-6px);
-  border-color: oklch(0.98 0.01 280 / 30%);
+  border-color: color-mix(in oklab, var(--primary) 55%, transparent);
+  box-shadow: 0 18px 40px -26px oklch(0.2 0.02 265 / 0.35);
 }
 
 @media (prefers-reduced-motion: reduce) {
