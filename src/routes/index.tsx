@@ -1,6 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal, RevealText } from "@/components/Reveal";
+import { CountUp, Parallax, ParallaxImage, ScrollProgress } from "@/components/Motion";
 import prismAsset from "@/assets/prism.jpg.asset.json";
+import campusImg from "@/assets/campus.jpg";
+import corporateImg from "@/assets/corporate.jpg";
+import graphicImg from "@/assets/course-graphic-design.jpg";
+import animationImg from "@/assets/course-animation.jpg";
+import uiuxImg from "@/assets/course-uiux.jpg";
+import videoImg from "@/assets/course-video-editing.jpg";
+import marketingImg from "@/assets/course-digital-marketing.jpg";
+import portfolioImg from "@/assets/works-portfolio.jpg";
 import {
   ArrowUpRight,
   Clock,
@@ -9,6 +18,7 @@ import {
   Phone,
   Sparkles,
 } from "lucide-react";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -180,7 +190,9 @@ function ListRows({ items }: { items: string[] }) {
 function Index() {
   return (
     <div className="relative overflow-hidden bg-background">
+      <ScrollProgress />
       {/* ambient spectrum aurora */}
+
       <div
         aria-hidden
         className="pointer-events-none fixed inset-0 -z-10 opacity-90 blur-[120px] animate-aurora"
@@ -304,6 +316,42 @@ function Index() {
         </div>
       </div>
 
+      {/* ── Stats counters ───────────────────────────────── */}
+      <section className="px-6 py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { to: 1999, suffix: "", label: "Established", plain: true },
+            { to: 25, suffix: "+", label: "Years of training" },
+            { to: 10, suffix: "", label: "Career courses" },
+            { to: 50000, suffix: "+", label: "Students targeted" },
+          ].map((s, i) => (
+            <Reveal key={s.label} delay={i * 110}>
+              <div className="border-t border-border pt-6">
+                <div className="font-display text-[clamp(2.2rem,4.5vw,3.4rem)] font-semibold leading-none text-spectrum">
+                  {s.plain ? s.to : <CountUp to={s.to} suffix={s.suffix} />}
+                </div>
+                <div className="mt-3 text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                  {s.label}
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Campus parallax band ─────────────────────────── */}
+      <section className="px-6 pb-10">
+        <div className="mx-auto max-w-7xl">
+          <ParallaxImage
+            src={campusImg}
+            alt="Students learning multimedia design at the Prism Multimedia training lab"
+            ratio="aspect-[16/7]"
+            zoom={0.18}
+            shift={60}
+          />
+        </div>
+      </section>
+
       {/* ── About ────────────────────────────────────────── */}
       <section id="about" className="px-6 py-28">
         <div className="mx-auto max-w-7xl">
@@ -359,7 +407,34 @@ function Index() {
           <h2 className="mt-8 font-display text-[clamp(1.9rem,3.6vw,3rem)] font-semibold">
             <RevealText text="Ten career tracks in creative craft." />
           </h2>
-          <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+
+          {/* featured tracks with imagery */}
+          <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              { img: graphicImg, title: "Graphic Design", note: "Brand systems, layout, print" },
+              { img: animationImg, title: "3D Animation & VFX", note: "Modelling, rigging, compositing" },
+              { img: uiuxImg, title: "UI / UX Design", note: "Research, wireframes, prototypes" },
+              { img: videoImg, title: "Audio & Video Editing", note: "Edit, grade, finish" },
+              { img: marketingImg, title: "Digital Marketing", note: "Campaigns, analytics, content" },
+              { img: portfolioImg, title: "Portfolio Development", note: "Live projects, reviews" },
+            ].map((t, i) => (
+              <Reveal key={t.title} variant="up" delay={i * 90}>
+                <a href="#contact" className="group block">
+                  <ParallaxImage src={t.img} alt={t.title} ratio="aspect-[4/3]" />
+                  <Parallax distance={24} className="mt-5 flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="font-display text-lg">{t.title}</h3>
+                      <p className="mt-1 text-sm text-muted-foreground">{t.note}</p>
+                    </div>
+                    <ArrowUpRight className="size-5 shrink-0 text-muted-foreground transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-foreground" />
+                  </Parallax>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-16 grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+
             {courses.map((c, i) => (
               <Reveal key={c} variant="up" delay={i * 70}>
                 <a
@@ -419,7 +494,17 @@ function Index() {
       <section id="corporate" className="px-6 py-28">
         <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-border bg-card/50 p-8 md:p-14">
           <SectionLabel>Corporate Training</SectionLabel>
-          <div className="mt-10 grid gap-12 lg:grid-cols-2">
+          <div className="mt-10">
+            <ParallaxImage
+              src={corporateImg}
+              alt="Corporate design training session for a client team"
+              ratio="aspect-[16/6]"
+              zoom={0.16}
+              shift={50}
+            />
+          </div>
+          <div className="mt-12 grid gap-12 lg:grid-cols-2">
+
             <Reveal>
               <p className="text-base leading-relaxed text-muted-foreground md:text-xl">
                 Prism Multimedia offers customized corporate training solutions to organizations by
@@ -448,7 +533,21 @@ function Index() {
           <h2 className="mt-8 max-w-3xl font-display text-[clamp(1.7rem,3.2vw,2.6rem)] font-semibold leading-tight">
             <RevealText text="Students create professional-quality projects that become impressive portfolios." />
           </h2>
-          <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+
+            {[
+              { img: portfolioImg, label: "Branding & Print" },
+              { img: uiuxImg, label: "UI / UX Case Studies" },
+              { img: animationImg, label: "Animation & VFX Reels" },
+            ].map((w, i) => (
+              <Reveal key={w.label} variant="mask" delay={i * 120}>
+                <ParallaxImage src={w.img} alt={w.label} ratio="aspect-[4/3]" />
+                <p className="mt-4 font-display text-base">{w.label}</p>
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-12 grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
+
             {works.map((w, i) => (
               <Reveal key={w} variant="mask" delay={i * 60}>
                 <div className="group relative flex h-40 items-end bg-card p-5 transition-colors hover:bg-secondary">
