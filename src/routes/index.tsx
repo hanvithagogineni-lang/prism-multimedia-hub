@@ -407,7 +407,34 @@ function Index() {
           <h2 className="mt-8 font-display text-[clamp(1.9rem,3.6vw,3rem)] font-semibold">
             <RevealText text="Ten career tracks in creative craft." />
           </h2>
-          <div className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+
+          {/* featured tracks with imagery */}
+          <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              { img: graphicImg, title: "Graphic Design", note: "Brand systems, layout, print" },
+              { img: animationImg, title: "3D Animation & VFX", note: "Modelling, rigging, compositing" },
+              { img: uiuxImg, title: "UI / UX Design", note: "Research, wireframes, prototypes" },
+              { img: videoImg, title: "Audio & Video Editing", note: "Edit, grade, finish" },
+              { img: marketingImg, title: "Digital Marketing", note: "Campaigns, analytics, content" },
+              { img: portfolioImg, title: "Portfolio Development", note: "Live projects, reviews" },
+            ].map((t, i) => (
+              <Reveal key={t.title} variant="up" delay={i * 90}>
+                <a href="#contact" className="group block">
+                  <ParallaxImage src={t.img} alt={t.title} ratio="aspect-[4/3]" />
+                  <Parallax distance={24} className="mt-5 flex items-start justify-between gap-4">
+                    <div>
+                      <h3 className="font-display text-lg">{t.title}</h3>
+                      <p className="mt-1 text-sm text-muted-foreground">{t.note}</p>
+                    </div>
+                    <ArrowUpRight className="size-5 shrink-0 text-muted-foreground transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-foreground" />
+                  </Parallax>
+                </a>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-16 grid gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+
             {courses.map((c, i) => (
               <Reveal key={c} variant="up" delay={i * 70}>
                 <a
