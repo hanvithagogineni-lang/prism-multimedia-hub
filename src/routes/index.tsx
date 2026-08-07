@@ -494,7 +494,17 @@ function Index() {
       <section id="corporate" className="px-6 py-28">
         <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-border bg-card/50 p-8 md:p-14">
           <SectionLabel>Corporate Training</SectionLabel>
-          <div className="mt-10 grid gap-12 lg:grid-cols-2">
+          <div className="mt-10">
+            <ParallaxImage
+              src={corporateImg}
+              alt="Corporate design training session for a client team"
+              ratio="aspect-[16/6]"
+              zoom={0.16}
+              shift={50}
+            />
+          </div>
+          <div className="mt-12 grid gap-12 lg:grid-cols-2">
+
             <Reveal>
               <p className="text-base leading-relaxed text-muted-foreground md:text-xl">
                 Prism Multimedia offers customized corporate training solutions to organizations by
