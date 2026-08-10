@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, ArrowUpRight, Check, Clock, GraduationCap, Laptop, Mail, Phone } from "lucide-react";
 import { Reveal, RevealText } from "@/components/Reveal";
 import { Parallax, ParallaxImage, ScrollProgress } from "@/components/Motion";
-import { courses, getCourse } from "@/lib/courses";
+import { courses, getCourse, type Course } from "@/lib/courses";
 
 export const Route = createFileRoute("/courses/$slug")({
   loader: ({ params }) => {
@@ -49,7 +49,7 @@ export const Route = createFileRoute("/courses/$slug")({
 });
 
 function CourseDetail() {
-  const { course } = Route.useLoaderData();
+  const { course } = Route.useLoaderData() as { course: Course };
   const others = courses.filter((c) => c.slug !== course.slug).slice(0, 3);
 
   return (

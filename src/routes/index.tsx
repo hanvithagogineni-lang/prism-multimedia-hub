@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal, RevealText } from "@/components/Reveal";
 import { CountUp, Parallax, ParallaxImage, ScrollProgress } from "@/components/Motion";
 import prismAsset from "@/assets/prism.jpg.asset.json";
@@ -42,18 +42,9 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const courses = [
-  "Graphic Design",
-  "Motion Graphics",
-  "UI Design & Development",
-  "UX Design",
-  "Digital Marketing",
-  "2D Animation",
-  "3D Animation",
-  "Audio & Video Editing",
-  "VFX Course",
-  "EDP Course",
-];
+import { courses as courseData } from "@/lib/courses";
+
+const courses = courseData.map((c) => c.title);
 
 const vision = [
   "Empower students with industry-ready creative skills.",
@@ -411,15 +402,15 @@ function Index() {
           {/* featured tracks with imagery */}
           <div className="mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[
-              { img: graphicImg, title: "Graphic Design", note: "Brand systems, layout, print" },
-              { img: animationImg, title: "3D Animation & VFX", note: "Modelling, rigging, compositing" },
-              { img: uiuxImg, title: "UI / UX Design", note: "Research, wireframes, prototypes" },
-              { img: videoImg, title: "Audio & Video Editing", note: "Edit, grade, finish" },
-              { img: marketingImg, title: "Digital Marketing", note: "Campaigns, analytics, content" },
-              { img: portfolioImg, title: "Portfolio Development", note: "Live projects, reviews" },
+              { img: graphicImg, title: "Graphic Design", note: "Brand systems, layout, print", slug: "graphic-design" },
+              { img: animationImg, title: "3D Animation", note: "Modelling, rigging, compositing", slug: "3d-animation" },
+              { img: uiuxImg, title: "UI / UX Design", note: "Research, wireframes, prototypes", slug: "ui-design-development" },
+              { img: videoImg, title: "Audio & Video Editing", note: "Edit, grade, finish", slug: "audio-video-editing" },
+              { img: marketingImg, title: "Digital Marketing", note: "Campaigns, analytics, content", slug: "digital-marketing" },
+              { img: portfolioImg, title: "EDP Course", note: "Turn your skills into a business", slug: "edp-course" },
             ].map((t, i) => (
               <Reveal key={t.title} variant="up" delay={i * 90}>
-                <a href="#contact" className="group block">
+                <Link to="/courses/$slug" params={{ slug: t.slug }} className="group block">
                   <ParallaxImage src={t.img} alt={t.title} ratio="aspect-[4/3]" />
                   <Parallax distance={24} className="mt-5 flex items-start justify-between gap-4">
                     <div>
@@ -428,7 +419,7 @@ function Index() {
                     </div>
                     <ArrowUpRight className="size-5 shrink-0 text-muted-foreground transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-foreground" />
                   </Parallax>
-                </a>
+                </Link>
               </Reveal>
             ))}
           </div>
@@ -437,8 +428,9 @@ function Index() {
 
             {courses.map((c, i) => (
               <Reveal key={c} variant="up" delay={i * 70}>
-                <a
-                  href="#contact"
+                <Link
+                  to="/courses/$slug"
+                  params={{ slug: courseData[i]!.slug }}
                   className="hover-lift group flex h-full items-end justify-between gap-4 bg-card p-7 hover:bg-secondary"
                 >
                   <div>
@@ -452,7 +444,7 @@ function Index() {
                     />
                   </div>
                   <ArrowUpRight className="size-5 shrink-0 text-muted-foreground transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-foreground" />
-                </a>
+                </Link>
               </Reveal>
             ))}
           </div>
