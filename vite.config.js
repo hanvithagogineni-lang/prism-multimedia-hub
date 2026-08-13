@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  // Required for https://hanvithagogineni-lang.github.io/prism-multimedia-hub/
-  base: '/prism-multimedia-hub/',
+  // Relative base works for GitHub project Pages and local preview
+  base: './',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
