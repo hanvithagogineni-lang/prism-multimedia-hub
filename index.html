@@ -5,10 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prism Multimedia | Best Multimedia Training Institute</title>
   <meta name="description" content="Prism Multimedia — industry-oriented multimedia training in Hyderabad since 1999. Graphic Design, Animation, VFX, UI/UX, Digital Marketing, Video Editing and more." />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body class="home">
+  <!-- Safety: hide preloader even if modules fail to load (e.g. unbuilt GitHub Pages) -->
+  <script>
+    setTimeout(function () {
+      var preloader = document.getElementById('preloader');
+      if (preloader && !preloader.classList.contains('fade-out')) {
+        preloader.classList.add('fade-out');
+        document.dispatchEvent(new CustomEvent('prism:preloader-done'));
+      }
+    }, 4500);
+  </script>
   <div class="preloader" id="preloader">
     <div class="preloader-brand">
       <div class="logo-badge" style="width:54px; height:54px; margin: 0 auto 1.5rem auto; font-size:1.6rem;">P</div>
@@ -82,7 +92,7 @@
       <div class="rr-landing-hero" id="heroPinned">
         <div class="rr-landing-hero-bg-video">
           <video id="heroVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-            <source src="/prism-hero.mp4" type="video/mp4" />
+            <source src="./prism-hero.mp4" type="video/mp4" />
           </video>
         </div>
         <div class="rr-landing-hero_gradient-bg"></div>
