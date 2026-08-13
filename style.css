@@ -1229,10 +1229,125 @@ button.program-card.info-card:focus-visible {
   margin-bottom: 1rem;
 }
 
-.leader-bio {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  line-height: 1.6;
+/* Alumni Showcase Section V2 (Matching beta.prismmultimedia.com) */
+.alumni-showcase-section {
+  background: #0a0a0d;
+}
+
+.alumni-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+}
+
+.alumni-main-heading {
+  margin-bottom: 0;
+}
+
+.alumni-nav-btns {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.alumni-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: #f58220;
+  color: #ffffff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(245, 130, 32, 0.3);
+}
+
+.alumni-nav-btn:hover {
+  background: #e06706;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(245, 130, 32, 0.45);
+}
+
+.alumni-nav-btn.alumni-next-btn {
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.alumni-nav-btn.alumni-next-btn:hover {
+  background: #1e293b;
+  border-color: #f58220;
+}
+
+.alumni-grid-4col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.alumni-card-v2 {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.alumni-card-v2:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(245, 130, 32, 0.25);
+}
+
+.alumni-img-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1.05;
+  position: relative;
+  background: #e2e8f0;
+}
+
+.alumni-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.alumni-card-details {
+  padding: 1.25rem 1.25rem 1.5rem 1.25rem;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.alumni-name-v2 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f58220;
+  margin-bottom: 0.35rem;
+}
+
+.alumni-role-v2 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.25;
+  margin-bottom: 0.35rem;
+}
+
+.alumni-company-v2 {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #475569;
 }
 
 /* Footer & Modal */

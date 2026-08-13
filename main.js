@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initStatCounters();
   initSectionLineDraws();
   initWhyChooseAnimations();
+  initAlumniCarousel();
   initModal();
   initInfoCards();
   initNavScrollBg();
@@ -597,6 +598,46 @@ function initWhyChooseAnimations() {
       }
     );
   }
+}
+
+function initAlumniCarousel() {
+  const prevBtn = document.getElementById('alumniPrevBtn');
+  const nextBtn = document.getElementById('alumniNextBtn');
+  const grid = document.querySelector('.alumni-grid-4col');
+  if (!prevBtn || !nextBtn || !grid) return;
+
+  const cards = grid.querySelectorAll('.alumni-card-v2');
+  if (!cards.length) return;
+
+  let index = 0;
+
+  const update = () => {
+    cards.forEach((card, i) => {
+      if (window.innerWidth <= 580) {
+        card.style.display = i === index ? 'flex' : 'none';
+      } else if (window.innerWidth <= 1024) {
+        card.style.display = (i === index || i === index + 1) ? 'flex' : 'none';
+      } else {
+        card.style.display = (i >= index && i < index + 4) ? 'flex' : 'none';
+      }
+    });
+  };
+
+  prevBtn.addEventListener('click', () => {
+    const step = window.innerWidth <= 580 ? 1 : (window.innerWidth <= 1024 ? 2 : 4);
+    index = Math.max(0, index - step);
+    update();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const step = window.innerWidth <= 580 ? 1 : (window.innerWidth <= 1024 ? 2 : 4);
+    const maxIndex = cards.length - step;
+    index = Math.min(maxIndex, index + step);
+    update();
+  });
+
+  window.addEventListener('resize', update);
+  update();
 }
 
 function initSectionLineDraws() {
