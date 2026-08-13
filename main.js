@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initImageParallax();
   initStatCounters();
   initSectionLineDraws();
+  initWhyChooseAnimations();
   initModal();
   initInfoCards();
   initNavScrollBg();
@@ -336,7 +337,6 @@ function initPixelRevealGrids() {
     ScrollTrigger.create({
       trigger: wrapper,
       start: 'top 90%',
-      once: true,
       onEnter: reveal,
       onEnterBack: reveal,
     });
@@ -370,17 +370,17 @@ function initSectionReveals() {
   headings.forEach((el) => {
     gsap.fromTo(
       el,
-      { opacity: 0, y: 48, rotateX: 12, transformPerspective: 900 },
+      { opacity: 0, y: 44, rotateX: 10, transformPerspective: 900 },
       {
         opacity: 1,
         y: 0,
         rotateX: 0,
-        duration: 1,
+        duration: 0.95,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: el,
-          start: 'top 88%',
-          toggleActions: 'play none none none',
+          start: 'top 90%',
+          toggleActions: 'play none play reset',
         },
       }
     );
@@ -390,7 +390,7 @@ function initSectionReveals() {
 
   document.querySelectorAll('.section-padding, .footer').forEach((section) => {
     const cards = section.querySelectorAll(
-      '.program-card, .work-card, .content-card, .alumni-card, .testimonial-card, .faq-item, .process-step, .stat-card, .vm-card, .why-item, .course-track-item, .contact-card, .brochure-banner, .leader-two-col, [data-rr-reveal]'
+      '.program-card, .work-card, .content-card, .alumni-card, .testimonial-card, .faq-item, .process-step, .stat-card, .vm-card, .why-item, .course-track-item, .contact-card, .brochure-banner, .leader-two-col, .student-grid-card, .why-choose-feature-item, [data-rr-reveal]'
     );
     if (!cards.length) return;
 
@@ -400,8 +400,8 @@ function initSectionReveals() {
       cards,
       {
         opacity: 0,
-        y: 56,
-        rotateX: 10,
+        y: 48,
+        rotateX: 8,
         scale: 0.96,
         transformPerspective: 1000,
       },
@@ -410,13 +410,13 @@ function initSectionReveals() {
         y: 0,
         rotateX: 0,
         scale: 1,
-        duration: 0.85,
+        duration: 0.8,
         stagger: 0.08,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: section,
-          start: 'top 78%',
-          toggleActions: 'play none none none',
+          start: 'top 82%',
+          toggleActions: 'play none play reset',
         },
       }
     );
@@ -508,16 +508,16 @@ function initStatCounters() {
 
     const target = parseInt(match[1].replace(/,/g, ''), 10);
     const suffix = raw.replace(match[1], '');
-    const state = { val: 0 };
 
     const play = () => {
       if (prefersReducedMotion()) {
         el.textContent = raw;
         return;
       }
+      const state = { val: 0 };
       gsap.to(state, {
         val: target,
-        duration: 1.7,
+        duration: 1.6,
         ease: 'power2.out',
         onUpdate: () => {
           el.textContent = `${Math.round(state.val)}${suffix}`;
@@ -527,11 +527,76 @@ function initStatCounters() {
 
     ScrollTrigger.create({
       trigger: el,
-      start: 'top 85%',
-      once: true,
+      start: 'top 88%',
       onEnter: play,
+      onEnterBack: play,
     });
   });
+}
+
+function initWhyChooseAnimations() {
+  if (prefersReducedMotion()) return;
+
+  const emoji = document.querySelector('.why-choose-emoji-svg');
+  if (emoji) {
+    // Levitating floating loop
+    gsap.to(emoji, {
+      y: -14,
+      rotate: 2.5,
+      duration: 2.6,
+      repeat: -1,
+      yoyo: true,
+      ease: 'sine.inOut',
+    });
+
+    // 3D tilt on hover / pointermove
+    const wrap = document.querySelector('.why-choose-emoji-wrap');
+    if (wrap) {
+      wrap.addEventListener('pointermove', (e) => {
+        const rect = wrap.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        gsap.to(emoji, {
+          rotateY: x * 20,
+          rotateX: -y * 15,
+          duration: 0.4,
+          ease: 'power2.out',
+          transformPerspective: 800,
+        });
+      });
+
+      wrap.addEventListener('pointerleave', () => {
+        gsap.to(emoji, {
+          rotateY: 0,
+          rotateX: 0,
+          duration: 0.6,
+          ease: 'power3.out',
+        });
+      });
+    }
+  }
+
+  // Feature list item entrance on scroll up and down
+  const items = document.querySelectorAll('.why-choose-feature-item');
+  if (items.length) {
+    gsap.fromTo(
+      items,
+      { opacity: 0, x: 45, rotateY: 15 },
+      {
+        opacity: 1,
+        x: 0,
+        rotateY: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#why-choose-us-feature',
+          start: 'top 75%',
+          toggleActions: 'play none play reset',
+        },
+      }
+    );
+  }
 }
 
 function initSectionLineDraws() {
