@@ -1744,6 +1744,23 @@ button.program-card.info-card:focus-visible {
   transition: transform 0.4s ease;
 }
 
+.blog-cat-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: #f58220;
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.35rem 0.85rem;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+
 .blog-card-item:hover .blog-poster-img {
   transform: scale(1.05);
 }
