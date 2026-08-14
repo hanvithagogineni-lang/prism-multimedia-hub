@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAlumniCarousel();
   initGoogleReviewsCarousel();
   initBlogsCarousel();
+  initBlogReaderModal();
   initModal();
   initInfoCards();
   initNavScrollBg();
@@ -749,6 +750,318 @@ function initBlogsCarousel() {
 
   window.addEventListener('resize', update);
   update();
+}
+
+function initBlogReaderModal() {
+  const modal = document.getElementById('blogReaderModal');
+  const backdrop = document.getElementById('blogReaderBackdrop');
+  const closeBtn = document.getElementById('blogReaderCloseBtn');
+  const catEl = document.getElementById('blogReaderCat');
+  const titleEl = document.getElementById('blogReaderTitle');
+  const contentEl = document.getElementById('blogReaderContent');
+  const recentEl = document.getElementById('blogSidebarRecent');
+  if (!modal || !backdrop || !closeBtn) return;
+
+  const blogPostsData = [
+    {
+      id: 1,
+      cat: 'INDESIGN',
+      title: 'Master Adobe InDesign: Top 100 Essential Keyboard Shortcuts',
+      img: './blog-poster-1.jpg',
+      content: `
+        <p>In the world of digital design, Adobe InDesign is a titan, renowned for its robust feature set that caters to everything from magazine layouts to interactive PDFs. However, even the most seasoned designers might not be tapping into InDesign's full potential. How? By not utilizing keyboard shortcuts. That's right, those little keystrokes that could shave precious seconds off your tasks, cumulating into hours of saved time on projects. In this blog, we're unlocking the door to efficiency with the top 100 keyboard shortcuts for Adobe InDesign. Whether you're laying out a brochure, designing a newsletter, or creating digital publications, these shortcuts will have you working like an InDesign wizard in no time. Let's boost your productivity and make your design process as seamless as your creations.</p>
+        
+        <h3>Navigating and Viewing Documents</h3>
+        <ol>
+          <li><strong>Cmd/Ctrl + 0</strong> – Fit Page in Window</li>
+          <li><strong>Cmd/Ctrl + 1</strong> – Actual Size</li>
+          <li><strong>Cmd/Ctrl + 2</strong> – Zoom to 200%</li>
+          <li><strong>Cmd/Ctrl + +/-</strong> – Zoom In/Out</li>
+          <li><strong>Cmd/Ctrl + J</strong> – Go to Page</li>
+          <li><strong>Cmd/Ctrl + Page Up/Page Down</strong> – Previous/Next Page</li>
+          <li><strong>Cmd/Ctrl + Alt + 0</strong> – Fit Spread in Window</li>
+          <li><strong>Cmd/Ctrl + Shift + E</strong> – Preview Mode</li>
+          <li><strong>W</strong> (with no text selected) – Switch between Normal and Preview Mode</li>
+          <li><strong>Cmd/Ctrl + Y</strong> – Story Editor</li>
+        </ol>
+
+        <h3>Text and Typography</h3>
+        <ol start="11">
+          <li><strong>T</strong> – Type Tool</li>
+          <li><strong>Cmd/Ctrl + Shift + T</strong> – Character Panel</li>
+          <li><strong>Cmd/Ctrl + Option/Alt + T</strong> – Tabs Panel</li>
+          <li><strong>Cmd/Ctrl + B</strong> – Text Frame Options</li>
+          <li><strong>Cmd/Ctrl + Shift + &lt; or &gt;</strong> – Decrease/Increase Font Size</li>
+          <li><strong>Cmd/Ctrl + Shift + K</strong> – Toggle All Caps</li>
+          <li><strong>Cmd/Ctrl + Alt + Shift + K</strong> – Toggle Small Caps</li>
+          <li><strong>Cmd/Ctrl + L</strong> – Align Left</li>
+          <li><strong>Cmd/Ctrl + R</strong> – Align Right</li>
+          <li><strong>Cmd/Ctrl + Shift + C</strong> – Align Center</li>
+        </ol>
+
+        <h3>Working with Objects</h3>
+        <ol start="21">
+          <li><strong>V</strong> – Selection Tool</li>
+          <li><strong>A</strong> – Direct Selection Tool</li>
+          <li><strong>Cmd/Ctrl + D</strong> – Place File</li>
+          <li><strong>Cmd/Ctrl + Shift + M</strong> – Move Object</li>
+          <li><strong>E</strong> – Free Transform Tool</li>
+          <li><strong>Cmd/Ctrl + Shift + [</strong> – Send to Back</li>
+          <li><strong>Cmd/Ctrl + Shift + ]</strong> – Bring to Front</li>
+          <li><strong>Cmd/Ctrl + [</strong> – Send Backward</li>
+          <li><strong>Cmd/Ctrl + ]</strong> – Bring Forward</li>
+          <li><strong>Cmd/Ctrl + G</strong> – Group Selected Objects</li>
+        </ol>
+
+        <h3>Layers and Colors</h3>
+        <ol start="31">
+          <li><strong>F7</strong> – Layers Panel</li>
+          <li><strong>F6</strong> – Color Panel</li>
+          <li><strong>F5</strong> – Swatches Panel</li>
+          <li><strong>Cmd/Ctrl + Shift + F5</strong> – Gradient Panel</li>
+          <li><strong>Cmd/Ctrl + F8</strong> – Stroke Panel</li>
+          <li><strong>Cmd/Ctrl + Shift + F10</strong> – Effects Panel</li>
+          <li><strong>Cmd/Ctrl + M</strong> – New Color Swatch</li>
+          <li><strong>Cmd/Ctrl + Alt + Shift + M</strong> – New Gradient Swatch</li>
+          <li><strong>Cmd/Ctrl + 3</strong> – Hide Selection</li>
+          <li><strong>Cmd/Ctrl + Alt + 3</strong> – Show All</li>
+        </ol>
+      `
+    },
+    {
+      id: 2,
+      cat: 'ILLUSTRATOR',
+      title: 'Unlock Efficiency: Top 100 Adobe Illustrator Keyboard Shortcuts',
+      img: './blog-poster-2.jpg',
+      content: `
+        <p>Ever feel like your workflow could use a turbo boost? Master these 100 Illustrator shortcuts for seamless vector creation. From precision pen tool path adjustment to instant alignment and color palette swatches, mastering keyboard hotkeys in Adobe Illustrator will accelerate your digital artwork output tenfold.</p>
+        
+        <h3>Essential Vector Drawing Shortcuts</h3>
+        <ol>
+          <li><strong>P</strong> – Pen Tool</li>
+          <li><strong>Shift + C</strong> – Anchor Point Tool</li>
+          <li><strong>A</strong> – Direct Selection Tool</li>
+          <li><strong>V</strong> – Selection Tool</li>
+          <li><strong>M</strong> – Rectangle Tool</li>
+          <li><strong>L</strong> – Ellipse Tool</li>
+          <li><strong>N</strong> – Pencil Tool</li>
+          <li><strong>Shift + B</strong> – Blob Brush Tool</li>
+          <li><strong>Shift + E</strong> – Eraser Tool</li>
+          <li><strong>R</strong> – Rotate Tool</li>
+        </ol>
+
+        <h3>Artboard & Canvas Navigation</h3>
+        <ol start="11">
+          <li><strong>Shift + O</strong> – Artboard Tool</li>
+          <li><strong>Cmd/Ctrl + 0</strong> – Fit Artboard in Window</li>
+          <li><strong>Cmd/Ctrl + Alt + 0</strong> – Fit All in Window</li>
+          <li><strong>Spacebar (Hold)</strong> – Hand Tool / Pan Canvas</li>
+          <li><strong>Cmd/Ctrl + Y</strong> – Toggle Outline View Mode</li>
+          <li><strong>Cmd/Ctrl + Shift + D</strong> – Show/Hide Transparency Grid</li>
+          <li><strong>Cmd/Ctrl + U</strong> – Toggle Smart Guides</li>
+          <li><strong>Cmd/Ctrl + "</strong> – Toggle Grid</li>
+          <li><strong>Cmd/Ctrl + R</strong> – Show/Hide Rulers</li>
+          <li><strong>Cmd/Ctrl + 5</strong> – Make Guides</li>
+        </ol>
+      `
+    },
+    {
+      id: 3,
+      cat: 'PHOTOSHOP',
+      title: 'Master Adobe Photoshop: Top 100 Time-Saving Shortcuts',
+      img: './blog-poster-3.jpg',
+      content: `
+        <p>Ever find yourself in the thick of a creative project? Boost your editing productivity with these essential Photoshop shortcuts. Whether you are retouching commercial portraits, compositing multi-layer digital art, or color grading cinema stills, shortcuts save hours of mouse movements.</p>
+
+        <h3>Layer & Masking Essentials</h3>
+        <ol>
+          <li><strong>Cmd/Ctrl + Shift + N</strong> – Create New Layer</li>
+          <li><strong>Cmd/Ctrl + J</strong> – Duplicate Selected Layer</li>
+          <li><strong>Cmd/Ctrl + Shift + J</strong> – Layer via Cut</li>
+          <li><strong>Cmd/Ctrl + E</strong> – Merge Selected Layers</li>
+          <li><strong>Cmd/Ctrl + Shift + E</strong> – Merge Visible Layers</li>
+          <li><strong>Cmd/Ctrl + Alt + Shift + E</strong> – Stamp Visible Layers</li>
+          <li><strong>Cmd/Ctrl + G</strong> – Group Selected Layers</li>
+          <li><strong>Cmd/Ctrl + Shift + G</strong> – Ungroup Layers</li>
+          <li><strong>Cmd/Ctrl + Alt + G</strong> – Create Clipping Mask</li>
+          <li><strong>D</strong> – Reset Colors to Default Black/White</li>
+        </ol>
+      `
+    },
+    {
+      id: 4,
+      cat: 'SOCIAL MEDIA',
+      title: 'Exploring the Intersection of Multimedia and Social Media',
+      img: './blog-poster-4.jpg',
+      content: `
+        <p>The significance of multimedia has further amplified the reach, engagement, and potential of modern digital brand campaigns. From micro-animations on Instagram Reels to high-fidelity 3D motion graphics on TikTok and YouTube Shorts, visual storytelling has transformed digital advertising into an immersive experience.</p>
+
+        <h3>Key Trends in Social Media Visual Strategy</h3>
+        <ul>
+          <li><strong>Short-form Video Motion</strong>: 15-second animated infographics drive 3x higher retention.</li>
+          <li><strong>3D Brand Assets</strong>: Hyper-realistic product renders enhance conversion rates on ad campaigns.</li>
+          <li><strong>Dynamic Micro-Interactions</strong>: Custom Lottie animations increase app engagement metrics.</li>
+        </ul>
+      `
+    },
+    {
+      id: 5,
+      cat: 'COMPANY',
+      title: 'Why should I opt for PRISM MULTIMEDIA to boost my career?',
+      img: './blog-poster-5.jpg',
+      content: `
+        <p>Choosing the right institute or coaching is the first step for building a successful career in graphic design, motion graphics, and VFX. Prism Multimedia in Hyderabad stands out with 24+ years of industry experience, 100% placement support, certified master trainers, and hands-on live studio projects.</p>
+
+        <h3>Key Highlights of Prism Multimedia</h3>
+        <ul>
+          <li><strong>24+ Years of Industry Leadership</strong>: Training over 15,000+ successful alumni placed at top MNCs & studios worldwide.</li>
+          <li><strong>Live Studio Workflow</strong>: Practical training on real client projects with Adobe, Autodesk, & Unreal Engine pipelines.</li>
+          <li><strong>Dedicated Placement Cell</strong>: 100% placement assistance with top design agencies, game studios, and IT firms.</li>
+        </ul>
+      `
+    },
+    {
+      id: 6,
+      cat: 'UI DESIGN',
+      title: 'Motion Graphics in User Interface (UI) Design.',
+      img: './blog-poster-6.jpg',
+      content: `
+        <p>Motion graphics play an important role in modern user interface (UI) design by making interactions fluid, intuitive, and visually captivating. Motion guides user attention, provides instant feedback, and enhances overall product usability across mobile apps and web platforms.</p>
+
+        <h3>Core UI Motion Principles</h3>
+        <ul>
+          <li><strong>Easing & Timing</strong>: Custom cubic-bezier curves for natural element transitions.</li>
+          <li><strong>Visual Feedback</strong>: Micro-animations on button clicks and state changes.</li>
+          <li><strong>Spatial Orientation</strong>: Smooth slide and scale transitions for tab navigation.</li>
+        </ul>
+      `
+    },
+    {
+      id: 7,
+      cat: 'DESIGN',
+      title: 'Top 10 Creative Skill to learn in 2023',
+      img: './blog-poster-7.jpg',
+      content: `
+        <p>As digital usage has exponentially increased, creative skills have become paramount for modern digital careers. Here are the top 10 high-demand skills to master: Graphic Design, UI/UX Architecture, 3D Animation, Motion Design, VFX Compositing, Video Editing, Brand Storytelling, Prompt Engineering, Interactive Layouts, and Digital Painting.</p>
+      `
+    },
+    {
+      id: 8,
+      cat: 'CAREER',
+      title: 'Is Multimedia a Good Career Choice in 2023?',
+      img: './blog-poster-8.jpg',
+      content: `
+        <p>In today's digital age, the demand for multimedia professionals has skyrocketed across media, tech, advertising, gaming, and creative industries. Career paths in multimedia offer high salary packages, creative freedom, global remote opportunities, and rapid career progression.</p>
+      `
+    },
+    {
+      id: 9,
+      cat: 'DESIGN',
+      title: 'Top 10 Qualities of Graphic Designer – What Makes You a Good Designer',
+      img: './blog-poster-9.jpg',
+      content: `
+        <p>Graphic design is part of every human on this planet. Learn the essential qualities that distinguish top professional designers: Keen Eye for Detail, Mastery of Color Theory, Strong Typographic Sense, Problem-Solving Mindset, Adaptability, Communication Skills, Technical Proficiency, Curiosity, Time Management, and Passion for Creativity.</p>
+      `
+    },
+    {
+      id: 10,
+      cat: 'INSIGHTS',
+      title: 'Graphic Designing – Expectations Vs. Reality',
+      img: './blog-poster-10.jpg',
+      content: `
+        <p>Recent years have seen significant demand for visual graphics, and understanding industry realities prepares you for real client work. Learn how to bridge the gap between creative artistic freedom and real-world commercial client expectations.</p>
+      `
+    },
+    {
+      id: 11,
+      cat: 'PORTFOLIO',
+      title: 'Mastering the Art of Portfolio Creation in the Design Industry',
+      img: './blog-poster-11.jpg',
+      content: `
+        <p>Building an effective portfolio is crucial for any designer looking to showcase their work and secure top agency opportunities. A great portfolio highlights problem-solving processes, case studies, visual craft, and personal brand identity.</p>
+      `
+    },
+    {
+      id: 12,
+      cat: 'MOTION GRAPHICS',
+      title: 'The Evolution of Motion Graphics: From Cinema to Digital Media',
+      img: './blog-poster-12.jpg',
+      content: `
+        <p>Motion graphics have transformed from simple cinematic opening titles into complex interactive visual storytelling across digital media, streaming platforms, broadcast television, and mobile applications.</p>
+      `
+    }
+  ];
+
+  const openModal = (postIndex) => {
+    const post = blogPostsData[postIndex] || blogPostsData[0];
+    catEl.textContent = post.cat;
+    titleEl.textContent = post.title;
+    contentEl.innerHTML = post.content;
+
+    // Render Recent Posts Sidebar
+    const recents = blogPostsData.filter((_, idx) => idx !== postIndex).slice(0, 4);
+    recentEl.innerHTML = recents.map((r, rIdx) => `
+      <div class="sidebar-recent-item" data-post-idx="${blogPostsData.indexOf(r)}">
+        <img src="${r.img}" alt="${r.title}" class="sidebar-recent-img" />
+        <div class="sidebar-recent-info">
+          <h4>${r.title.length > 45 ? r.title.substring(0, 45) + '...' : r.title}</h4>
+        </div>
+      </div>
+    `).join('');
+
+    // Sidebar recent post click handlers
+    recentEl.querySelectorAll('.sidebar-recent-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const targetIdx = parseInt(item.getAttribute('data-post-idx'), 10);
+        openModal(targetIdx);
+        modal.querySelector('.blog-reader-container').scrollTop = 0;
+      });
+    });
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  // Attach click events to all blog card read-more buttons & cards
+  const cards = document.querySelectorAll('.blog-card-item');
+  cards.forEach((card, idx) => {
+    const readMoreBtn = card.querySelector('.blog-read-more-btn');
+    const posterWrap = card.querySelector('.blog-poster-wrap');
+    const cardTitle = card.querySelector('.blog-card-title');
+
+    [readMoreBtn, posterWrap, cardTitle].forEach(el => {
+      if (el) {
+        el.style.cursor = 'pointer';
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          openModal(idx);
+        });
+      }
+    });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+  const knowMoreBtn = document.getElementById('blogSidebarKnowMore');
+  if (knowMoreBtn) {
+    knowMoreBtn.addEventListener('click', () => {
+      closeModal();
+    });
+  }
 }
 
 function initSectionLineDraws() {
