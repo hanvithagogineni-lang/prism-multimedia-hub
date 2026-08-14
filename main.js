@@ -26,8 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initWhyChooseAnimations();
   initAlumniCarousel();
   initGoogleReviewsCarousel();
-  initLatestBlogsCarousel();
-  initInDesignBlogModal();
+  initBlogsCarousel();
   initModal();
   initInfoCards();
   initNavScrollBg();
@@ -695,38 +694,31 @@ function initGoogleReviewsCarousel() {
   update();
 }
 
-function initLatestBlogsCarousel() {
+function initBlogsCarousel() {
   const prevBtn = document.getElementById('blogPrevBtn');
   const nextBtn = document.getElementById('blogNextBtn');
-  const grid = document.getElementById('blogGrid');
-  const bDot1 = document.getElementById('bDot1');
-  const bDot2 = document.getElementById('bDot2');
-  const bDot3 = document.getElementById('bDot3');
+  const grid = document.getElementById('blogsGrid');
+  const dot1 = document.getElementById('bDot1');
+  const dot2 = document.getElementById('bDot2');
+  const dot3 = document.getElementById('bDot3');
   if (!prevBtn || !nextBtn || !grid) return;
 
-  const cards = grid.querySelectorAll('.latest-blog-card');
+  const cards = grid.querySelectorAll('.blog-card-item');
   if (!cards.length) return;
 
   let index = 0;
 
   const update = () => {
+    const step = window.innerWidth <= 640 ? 1 : (window.innerWidth <= 1024 ? 2 : 4);
     cards.forEach((card, i) => {
-      if (window.innerWidth <= 640) {
-        card.style.display = i === index ? 'flex' : 'none';
-      } else if (window.innerWidth <= 1024) {
-        card.style.display = (i === index || i === index + 1) ? 'flex' : 'none';
-      } else {
-        card.style.display = (i >= index && i < index + 4) ? 'flex' : 'none';
-      }
+      card.style.display = (i >= index && i < index + step) ? 'flex' : 'none';
     });
 
-    [bDot1, bDot2, bDot3].forEach((dot, idx) => {
+    const activeDot = Math.min(2, Math.floor(index / step));
+    [dot1, dot2, dot3].forEach((dot, idx) => {
       if (dot) {
-        if (idx === index) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
-        }
+        if (idx === activeDot) dot.classList.add('active');
+        else dot.classList.remove('active');
       }
     });
   };
@@ -744,73 +736,19 @@ function initLatestBlogsCarousel() {
     update();
   });
 
-  window.addEventListener('resize', update);
-  update();
-}
-
-function initInDesignBlogModal() {
-  const modal = document.getElementById('indesignBlogModal');
-  const closeBtn = document.getElementById('closeBlogModalBtn');
-  const closeBg = document.getElementById('closeBlogModalBg');
-  const triggers = document.querySelectorAll('.trigger-indesign-blog');
-  if (!modal) return;
-
-  // Add reveal class to article elements inside modal
-  const revealElements = modal.querySelectorAll('.blog-section-heading, .blog-shortcuts-list li, .blog-intro-text, .blog-sidebar-widget, .blog-related-item');
-  revealElements.forEach((el) => el.classList.add('blog-reveal-item'));
-
-  let modalObserver = null;
-
-  const initObserver = () => {
-    if (modalObserver) modalObserver.disconnect();
-
-    modalObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-blog-visible');
-        } else {
-          entry.target.classList.remove('is-blog-visible');
-        }
+  [dot1, dot2, dot3].forEach((dot, idx) => {
+    if (dot) {
+      dot.style.cursor = 'pointer';
+      dot.addEventListener('click', () => {
+        const step = window.innerWidth <= 640 ? 1 : (window.innerWidth <= 1024 ? 2 : 4);
+        index = idx * step;
+        update();
       });
-    }, {
-      root: modal,
-      threshold: 0.15
-    });
-
-    revealElements.forEach((el) => modalObserver.observe(el));
-  };
-
-  const open = (e) => {
-    if (e) e.preventDefault();
-    modal.removeAttribute('hidden');
-    document.body.style.overflow = 'hidden';
-    modal.scrollTop = 0;
-    setTimeout(initObserver, 50);
-  };
-
-  const close = () => {
-    modal.setAttribute('hidden', '');
-    document.body.style.overflow = '';
-    if (modalObserver) modalObserver.disconnect();
-    revealElements.forEach((el) => el.classList.remove('is-blog-visible'));
-  };
-
-  triggers.forEach((btn) => btn.addEventListener('click', open));
-  if (closeBtn) closeBtn.addEventListener('click', close);
-  if (closeBg) closeBg.addEventListener('click', close);
-
-  const knowBtn = document.getElementById('blogSidebarKnowBtn');
-  if (knowBtn) {
-    knowBtn.addEventListener('click', () => {
-      close();
-    });
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !modal.hasAttribute('hidden')) {
-      close();
     }
   });
+
+  window.addEventListener('resize', update);
+  update();
 }
 
 function initSectionLineDraws() {
