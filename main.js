@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initWhyChooseAnimations();
   initAlumniCarousel();
   initGoogleReviewsCarousel();
+  initLatestBlogsCarousel();
   initModal();
   initInfoCards();
   initNavScrollBg();
@@ -674,6 +675,59 @@ function initGoogleReviewsCarousel() {
         dot2.classList.add('active');
       }
     }
+  };
+
+  prevBtn.addEventListener('click', () => {
+    const step = window.innerWidth <= 640 ? 1 : (window.innerWidth <= 1024 ? 2 : 4);
+    index = Math.max(0, index - step);
+    update();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const step = window.innerWidth <= 640 ? 1 : (window.innerWidth <= 1024 ? 2 : 4);
+    const maxIndex = cards.length - step;
+    index = Math.min(maxIndex, index + step);
+    update();
+  });
+
+  window.addEventListener('resize', update);
+  update();
+}
+
+function initLatestBlogsCarousel() {
+  const prevBtn = document.getElementById('blogPrevBtn');
+  const nextBtn = document.getElementById('blogNextBtn');
+  const grid = document.getElementById('blogGrid');
+  const bDot1 = document.getElementById('bDot1');
+  const bDot2 = document.getElementById('bDot2');
+  const bDot3 = document.getElementById('bDot3');
+  if (!prevBtn || !nextBtn || !grid) return;
+
+  const cards = grid.querySelectorAll('.latest-blog-card');
+  if (!cards.length) return;
+
+  let index = 0;
+
+  const update = () => {
+    cards.forEach((card, i) => {
+      if (window.innerWidth <= 640) {
+        card.style.display = i === index ? 'flex' : 'none';
+      } else if (window.innerWidth <= 1024) {
+        card.style.display = (i === index || i === index + 1) ? 'flex' : 'none';
+      } else {
+        card.style.display = (i >= index && i < index + 4) ? 'flex' : 'none';
+      }
+    });
+
+    [bDot1, bDot2, bDot3].forEach((dot, idx) => {
+      if (dot) {
+        if (idx === index) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      }
+    });
   };
 
   prevBtn.addEventListener('click', () => {
