@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAlumniCarousel();
   initGoogleReviewsCarousel();
   initLatestBlogsCarousel();
+  initInDesignBlogModal();
   initModal();
   initInfoCards();
   initNavScrollBg();
@@ -745,6 +746,42 @@ function initLatestBlogsCarousel() {
 
   window.addEventListener('resize', update);
   update();
+}
+
+function initInDesignBlogModal() {
+  const modal = document.getElementById('indesignBlogModal');
+  const closeBtn = document.getElementById('closeBlogModalBtn');
+  const closeBg = document.getElementById('closeBlogModalBg');
+  const triggers = document.querySelectorAll('.trigger-indesign-blog');
+  if (!modal) return;
+
+  const open = (e) => {
+    if (e) e.preventDefault();
+    modal.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const close = () => {
+    modal.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+  };
+
+  triggers.forEach((btn) => btn.addEventListener('click', open));
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  if (closeBg) closeBg.addEventListener('click', close);
+
+  const knowBtn = document.getElementById('blogSidebarKnowBtn');
+  if (knowBtn) {
+    knowBtn.addEventListener('click', () => {
+      close();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.hasAttribute('hidden')) {
+      close();
+    }
+  });
 }
 
 function initSectionLineDraws() {
