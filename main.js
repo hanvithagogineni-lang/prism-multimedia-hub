@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSectionLineDraws();
   initWhyChooseAnimations();
   initAlumniCarousel();
+  initGoogleReviewsCarousel();
   initModal();
   initInfoCards();
   initNavScrollBg();
@@ -631,6 +632,58 @@ function initAlumniCarousel() {
 
   nextBtn.addEventListener('click', () => {
     const step = window.innerWidth <= 580 ? 1 : (window.innerWidth <= 1024 ? 2 : 4);
+    const maxIndex = cards.length - step;
+    index = Math.min(maxIndex, index + step);
+    update();
+  });
+
+  window.addEventListener('resize', update);
+  update();
+}
+
+function initGoogleReviewsCarousel() {
+  const prevBtn = document.getElementById('gReviewPrevBtn');
+  const nextBtn = document.getElementById('gReviewNextBtn');
+  const grid = document.getElementById('gReviewsGrid');
+  const dot1 = document.getElementById('gDot1');
+  const dot2 = document.getElementById('gDot2');
+  if (!prevBtn || !nextBtn || !grid) return;
+
+  const cards = grid.querySelectorAll('.google-review-card');
+  if (!cards.length) return;
+
+  let index = 0;
+
+  const update = () => {
+    cards.forEach((card, i) => {
+      if (window.innerWidth <= 640) {
+        card.style.display = i === index ? 'flex' : 'none';
+      } else if (window.innerWidth <= 1024) {
+        card.style.display = (i === index || i === index + 1) ? 'flex' : 'none';
+      } else {
+        card.style.display = (i >= index && i < index + 4) ? 'flex' : 'none';
+      }
+    });
+
+    if (dot1 && dot2) {
+      if (index === 0) {
+        dot1.classList.add('active');
+        dot2.classList.remove('active');
+      } else {
+        dot1.classList.remove('active');
+        dot2.classList.add('active');
+      }
+    }
+  };
+
+  prevBtn.addEventListener('click', () => {
+    const step = window.innerWidth <= 640 ? 1 : (window.innerWidth <= 1024 ? 2 : 4);
+    index = Math.max(0, index - step);
+    update();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const step = window.innerWidth <= 640 ? 1 : (window.innerWidth <= 1024 ? 2 : 4);
     const maxIndex = cards.length - step;
     index = Math.min(maxIndex, index + step);
     update();
