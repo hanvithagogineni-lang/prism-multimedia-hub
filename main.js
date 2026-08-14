@@ -758,6 +758,9 @@ function initInDesignBlogModal() {
   const open = (e) => {
     if (e) e.preventDefault();
     modal.removeAttribute('hidden');
+    modal.scrollTop = 0;
+    const content = modal.querySelector('.blog-reader-modal-content');
+    if (content) content.scrollTop = 0;
     document.body.style.overflow = 'hidden';
   };
 
