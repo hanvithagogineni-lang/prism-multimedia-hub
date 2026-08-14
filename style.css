@@ -3325,13 +3325,25 @@ button.program-link {
   justify-content: center;
   align-items: flex-start;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
   padding: 1.5rem;
+  scroll-behavior: smooth;
 }
 
 .blog-reader-modal-wrap[hidden] {
   display: none !important;
+}
+
+/* Modal Scroll Reveal Animations */
+.blog-reveal-item {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.blog-reveal-item.is-blog-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .blog-reader-modal-bg {

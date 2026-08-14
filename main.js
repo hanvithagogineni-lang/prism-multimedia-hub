@@ -755,18 +755,44 @@ function initInDesignBlogModal() {
   const triggers = document.querySelectorAll('.trigger-indesign-blog');
   if (!modal) return;
 
+  // Add reveal class to article elements inside modal
+  const revealElements = modal.querySelectorAll('.blog-section-heading, .blog-shortcuts-list li, .blog-intro-text, .blog-sidebar-widget, .blog-related-item');
+  revealElements.forEach((el) => el.classList.add('blog-reveal-item'));
+
+  let modalObserver = null;
+
+  const initObserver = () => {
+    if (modalObserver) modalObserver.disconnect();
+
+    modalObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-blog-visible');
+        } else {
+          entry.target.classList.remove('is-blog-visible');
+        }
+      });
+    }, {
+      root: modal,
+      threshold: 0.15
+    });
+
+    revealElements.forEach((el) => modalObserver.observe(el));
+  };
+
   const open = (e) => {
     if (e) e.preventDefault();
     modal.removeAttribute('hidden');
-    modal.scrollTop = 0;
-    const content = modal.querySelector('.blog-reader-modal-content');
-    if (content) content.scrollTop = 0;
     document.body.style.overflow = 'hidden';
+    modal.scrollTop = 0;
+    setTimeout(initObserver, 50);
   };
 
   const close = () => {
     modal.setAttribute('hidden', '');
     document.body.style.overflow = '';
+    if (modalObserver) modalObserver.disconnect();
+    revealElements.forEach((el) => el.classList.remove('is-blog-visible'));
   };
 
   triggers.forEach((btn) => btn.addEventListener('click', open));
