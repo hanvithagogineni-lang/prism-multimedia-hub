@@ -1067,23 +1067,151 @@ function initBlogReaderModal() {
     {
       id: 3,
       cat: 'PHOTOSHOP',
-      title: 'Master Adobe Photoshop: Top 100 Time-Saving Shortcuts',
+      title: 'Master Adobe Photoshop: Top 100 Time-Saving Shortcuts You Need to Know',
       img: './blog-poster-3.jpg',
       content: `
-        <p>Ever find yourself in the thick of a creative project? Boost your editing productivity with these essential Photoshop shortcuts. Whether you are retouching commercial portraits, compositing multi-layer digital art, or color grading cinema stills, shortcuts save hours of mouse movements.</p>
+        <p>Ever find yourself in the thick of a creative project, wishing there were ways to speed up your workflow in Adobe Photoshop? Well, hold on to your hats, folks, because we've got just the ticket! Photoshop is packed with nifty shortcuts designed to help you work faster, smarter, and unleash your creative beast with ease. From basic navigation to complex image manipulation, mastering these shortcuts can be a total game-changer. In this blog, we'll dive deep into the top 100 shortcuts that will have you editing like a pro in no time. Whether you're just starting out or looking to polish your skills, these shortcuts are your ticket to a more efficient, effective, and enjoyable Photoshop experience.</p>
+        
+        <p>Certainly! Let's expand that list and dive into more of those game-changing Photoshop shortcuts. Here's a more comprehensive list that covers a wide range of functions, ensuring you have a shortcut for nearly every common task you might need to tackle in Adobe Photoshop.</p>
 
-        <h3>Layer & Masking Essentials</h3>
+        <h3>Navigating and Basic Actions</h3>
         <ol>
-          <li><strong>Cmd/Ctrl + Shift + N</strong> – Create New Layer</li>
-          <li><strong>Cmd/Ctrl + J</strong> – Duplicate Selected Layer</li>
-          <li><strong>Cmd/Ctrl + Shift + J</strong> – Layer via Cut</li>
-          <li><strong>Cmd/Ctrl + E</strong> – Merge Selected Layers</li>
-          <li><strong>Cmd/Ctrl + Shift + E</strong> – Merge Visible Layers</li>
-          <li><strong>Cmd/Ctrl + Alt + Shift + E</strong> – Stamp Visible Layers</li>
-          <li><strong>Cmd/Ctrl + G</strong> – Group Selected Layers</li>
-          <li><strong>Cmd/Ctrl + Shift + G</strong> – Ungroup Layers</li>
-          <li><strong>Cmd/Ctrl + Alt + G</strong> – Create Clipping Mask</li>
-          <li><strong>D</strong> – Reset Colors to Default Black/White</li>
+          <li><strong>Ctrl+N (Cmd+N on Mac)</strong>: New Document</li>
+          <li><strong>Ctrl+O (Cmd+O on Mac)</strong>: Open File</li>
+          <li><strong>Ctrl+S (Cmd+S on Mac)</strong>: Save</li>
+          <li><strong>Ctrl+Shift+S (Cmd+Shift+S on Mac)</strong>: Save As</li>
+          <li><strong>Ctrl+W (Cmd+W on Mac)</strong>: Close Document</li>
+          <li><strong>Ctrl+Z (Cmd+Z on Mac)</strong>: Undo/Redo</li>
+          <li><strong>Ctrl+Shift+Z (Cmd+Shift+Z on Mac)</strong>: Step Forward</li>
+          <li><strong>Ctrl+Alt+Z (Cmd+Option+Z on Mac)</strong>: Step Backward</li>
+          <li><strong>Ctrl+Tab (Cmd+Tab on Mac)</strong>: Switch Between Open Documents</li>
+          <li><strong>Spacebar</strong>: Hand Tool (Pan Around)</li>
+        </ol>
+
+        <h3>Selection Tools</h3>
+        <ol start="11">
+          <li><strong>Ctrl+A (Cmd+A on Mac)</strong>: Select All</li>
+          <li><strong>Ctrl+D (Cmd+D on Mac)</strong>: Deselect</li>
+          <li><strong>Ctrl+Shift+I (Cmd+Shift+I on Mac)</strong>: Inverse Selection</li>
+          <li><strong>L</strong>: Lasso Tool</li>
+          <li><strong>W</strong>: Quick Selection Tool</li>
+          <li><strong>M</strong>: Marquee Tool</li>
+          <li><strong>Ctrl+Shift+N (Cmd+Shift+N on Mac)</strong>: New Layer</li>
+          <li><strong>Ctrl+J (Cmd+J on Mac)</strong>: Duplicate Layer or Selection</li>
+          <li><strong>Ctrl+E (Cmd+E on Mac)</strong>: Merge Layers</li>
+          <li><strong>Ctrl+Shift+E (Cmd+Shift+E on Mac)</strong>: Merge Visible</li>
+        </ol>
+
+        <h3>Brush and Painting Tools</h3>
+        <ol start="21">
+          <li><strong>B</strong>: Brush Tool</li>
+          <li><strong>[ or ]</strong>: Decrease/Increase Brush Size</li>
+          <li><strong>Shift+[ or Shift+]</strong>: Decrease/Increase Brush Hardness</li>
+          <li><strong>E</strong>: Eraser Tool</li>
+          <li><strong>G</strong>: Gradient Tool</li>
+          <li><strong>O</strong>: Dodge/Burn Tools</li>
+          <li><strong>S</strong>: Clone Stamp Tool</li>
+          <li><strong>J</strong>: Healing Brush Tool</li>
+          <li><strong>I</strong>: Eyedropper Tool</li>
+          <li><strong>T</strong>: Type Tool</li>
+        </ol>
+
+        <h3>Adjustments and Filters</h3>
+        <ol start="31">
+          <li><strong>Ctrl+L (Cmd+L on Mac)</strong>: Levels</li>
+          <li><strong>Ctrl+M (Cmd+M on Mac)</strong>: Curves</li>
+          <li><strong>Ctrl+U (Cmd+U on Mac)</strong>: Hue/Saturation</li>
+          <li><strong>Ctrl+B (Cmd+B on Mac)</strong>: Color Balance</li>
+          <li><strong>Ctrl+I (Cmd+I on Mac)</strong>: Invert Colors</li>
+          <li><strong>Ctrl+Shift+U (Cmd+Shift+U on Mac)</strong>: Desaturate</li>
+          <li><strong>Ctrl+T (Cmd+T on Mac)</strong>: Free Transform</li>
+          <li><strong>Ctrl+Shift+T (Cmd+Shift+T on Mac)</strong>: Repeat Last Transformation</li>
+          <li><strong>Ctrl+Alt+Shift+E (Cmd+Option+Shift+E on Mac)</strong>: Merge Layers to New Layer</li>
+          <li><strong>Ctrl+F (Cmd+F on Mac)</strong>: Repeat Last Filter</li>
+        </ol>
+
+        <h3>Layer and Object Management</h3>
+        <ol start="41">
+          <li><strong>Ctrl+G (Cmd+G on Mac)</strong>: Group Layers</li>
+          <li><strong>Ctrl+Shift+G (Cmd+Shift+G on Mac)</strong>: Ungroup Layers</li>
+          <li><strong>Ctrl+[ (Cmd+[ on Mac)</strong>: Send Layer Backward</li>
+          <li><strong>Ctrl+] (Cmd+] on Mac)</strong>: Bring Layer Forward</li>
+          <li><strong>Ctrl+Shift+[ (Cmd+Shift+[ on Mac)</strong>: Send Layer to Back</li>
+          <li><strong>Ctrl+Shift+] (Cmd+Shift+] on Mac)</strong>: Bring Layer to Front</li>
+          <li><strong>Ctrl+Alt+G (Cmd+Option+G on Mac)</strong>: Create/Release Clipping Mask</li>
+          <li><strong>V</strong>: Move Tool</li>
+          <li><strong>C</strong>: Crop Tool</li>
+          <li><strong>Ctrl+0 (Cmd+0 on Mac)</strong>: Fit Screen</li>
+        </ol>
+
+        <h3>View and Canvas Controls</h3>
+        <ol start="51">
+          <li><strong>Ctrl+1 (Cmd+1 on Mac)</strong>: 100% View (Actual Pixels)</li>
+          <li><strong>Ctrl++ (Cmd++ on Mac)</strong>: Zoom In</li>
+          <li><strong>Ctrl+- (Cmd+- on Mac)</strong>: Zoom Out</li>
+          <li><strong>Ctrl+H (Cmd+H on Mac)</strong>: Show/Hide Extras (Guides, Paths, Grid)</li>
+          <li><strong>Ctrl+R (Cmd+R on Mac)</strong>: Show/Hide Rulers</li>
+          <li><strong>Ctrl+; (Cmd+; on Mac)</strong>: Show/Hide Guides</li>
+          <li><strong>Ctrl+' (Cmd+' on Mac)</strong>: Show/Hide Grid</li>
+          <li><strong>F</strong>: Toggle Full Screen View Modes</li>
+          <li><strong>Tab</strong>: Hide/Show All Panels</li>
+          <li><strong>Shift+Tab</strong>: Hide/Show Side Panels Only</li>
+        </ol>
+
+        <h3>Advanced Editing Techniques</h3>
+        <ol start="61">
+          <li><strong>Ctrl+Shift+Alt+B (Cmd+Shift+Option+B on Mac)</strong>: Black & White Adjustment</li>
+          <li><strong>Ctrl+Alt+C (Cmd+Option+C on Mac)</strong>: Canvas Size</li>
+          <li><strong>Ctrl+Alt+I (Cmd+Option+I on Mac)</strong>: Image Size</li>
+          <li><strong>Ctrl+Shift+K (Cmd+Shift+K on Mac)</strong>: Color Settings</li>
+          <li><strong>Ctrl+K (Cmd+K on Mac)</strong>: Preferences</li>
+          <li><strong>Alt+Backspace (Option+Delete on Mac)</strong>: Fill with Foreground Color</li>
+          <li><strong>Ctrl+Backspace (Cmd+Delete on Mac)</strong>: Fill with Background Color</li>
+          <li><strong>Shift+F5</strong>: Fill Dialog (Content-Aware Fill)</li>
+          <li><strong>Shift+F6</strong>: Feather Selection</li>
+          <li><strong>Ctrl+Alt+Shift+K (Cmd+Option+Shift+K on Mac)</strong>: Keyboard Shortcuts Dialog</li>
+        </ol>
+
+        <h3>Masking and Refinements</h3>
+        <ol start="71">
+          <li><strong>Q</strong>: Quick Mask Mode Toggle</li>
+          <li><strong>\</strong>: Toggle Layer Mask Visibility</li>
+          <li><strong>Shift+Click on Mask Thumbnail</strong>: Disable/Enable Layer Mask</li>
+          <li><strong>Alt+Click on Mask Thumbnail</strong>: View Mask Only</li>
+          <li><strong>Ctrl+Shift+X (Cmd+Shift+X on Mac)</strong>: Liquify Filter</li>
+          <li><strong>Ctrl+Shift+A (Cmd+Shift+A on Mac)</strong>: Camera Raw Filter</li>
+          <li><strong>Ctrl+Alt+V (Cmd+Option+V on Mac)</strong>: Vanishing Point Filter</li>
+          <li><strong>Cmd/Ctrl+Option/Alt+Shift+W</strong>: Export As</li>
+          <li><strong>Cmd/Ctrl+Shift+Alt+S</strong>: Save for Web (Legacy)</li>
+          <li><strong>X</strong>: Switch Foreground and Background Colors</li>
+        </ol>
+
+        <h3>Smart Objects and Vector Tools</h3>
+        <ol start="81">
+          <li><strong>U</strong>: Shape Tools (Rectangle, Ellipse, Line, Custom Shape)</li>
+          <li><strong>A</strong>: Direct Selection / Path Selection Tool</li>
+          <li><strong>P</strong>: Pen Tool</li>
+          <li><strong>Convert to Smart Object</strong>: Right-click layer -> Convert to Smart Object</li>
+          <li><strong>Ctrl+Alt+Z (Cmd+Option+Z on Mac)</strong>: Multiple Undos</li>
+          <li><strong>Ctrl+Alt+Shift+P</strong>: Package Document Presets</li>
+          <li><strong>Ctrl+Shift+Alt+S</strong>: Quick PNG Export</li>
+          <li><strong>Ctrl+Shift+Option/Alt+N</strong>: New Layer Without Dialog</li>
+          <li><strong>Ctrl+Option/Alt+A</strong>: Select All Layers</li>
+          <li><strong>Ctrl+Alt+F (Cmd+Option+F on Mac)</strong>: Re-apply Filter with Dialog</li>
+        </ol>
+
+        <h3>Conclusion & Workflow Optimization</h3>
+        <ol start="91">
+          <li><strong>Ctrl+Option/Alt+G</strong>: Release Clipping Mask</li>
+          <li><strong>Ctrl+Shift+V</strong>: Paste Into</li>
+          <li><strong>Ctrl+Alt+Shift+V</strong>: Paste Outside</li>
+          <li><strong>Ctrl+J</strong>: Duplicate Smart Object</li>
+          <li><strong>F5</strong>: Brush Settings Panel</li>
+          <li><strong>F6</strong>: Color Panel</li>
+          <li><strong>F7</strong>: Layers Panel</li>
+          <li><strong>F8</strong>: Info Panel</li>
+          <li><strong>Cmd/Ctrl+Shift+H</strong>: Target Path Visibility</li>
+          <li><strong>Cmd/Ctrl+Option/Alt+Shift+Z</strong>: Purge Clipboard & Undo Memory</li>
         </ol>
       `
     },
