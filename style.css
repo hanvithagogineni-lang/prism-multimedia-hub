@@ -3356,13 +3356,66 @@ button.program-link {
   border-radius: 20px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
   overflow-y: auto;
+  scroll-behavior: smooth;
   z-index: 2;
   transform: translateY(40px) scale(0.96);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Custom Scrollbar for Modal Container */
+.blog-reader-container::-webkit-scrollbar {
+  width: 8px;
+}
+.blog-reader-container::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.blog-reader-container::-webkit-scrollbar-thumb {
+  background: #f58220;
+  border-radius: 4px;
+}
+.blog-reader-container::-webkit-scrollbar-thumb:hover {
+  background: #ea580c;
+}
+
 .blog-reader-modal.active .blog-reader-container {
   transform: translateY(0) scale(1);
+}
+
+.blog-reader-scroll-top-btn {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 3rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #f58220;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(245, 130, 32, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background 0.2s ease;
+}
+
+.blog-reader-scroll-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.blog-reader-scroll-top-btn:hover {
+  background: #ea580c;
+  transform: scale(1.1);
 }
 
 .blog-reader-close-btn {

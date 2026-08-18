@@ -1374,6 +1374,23 @@ function initBlogReaderModal() {
     });
   });
 
+  const container = document.getElementById('blogReaderContainer');
+  const scrollTopBtn = document.getElementById('blogReaderScrollTopBtn');
+
+  if (container && scrollTopBtn) {
+    container.addEventListener('scroll', () => {
+      if (container.scrollTop > 250) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      container.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   closeBtn.addEventListener('click', closeModal);
   backdrop.addEventListener('click', closeModal);
 
