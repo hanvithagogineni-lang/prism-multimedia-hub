@@ -803,14 +803,14 @@ function initBlogReaderModal() {
         <ol start="21">
           <li><strong>V</strong> – Selection Tool</li>
           <li><strong>A</strong> – Direct Selection Tool</li>
-          <li><strong>Cmd/Ctrl + D</strong> – Place File</li>
-          <li><strong>Cmd/Ctrl + Shift + M</strong> – Move Object</li>
+          <li><strong>Cmd/Ctrl + D</strong> – Place</li>
+          <li><strong>Cmd/Ctrl + Shift + M</strong> – Move</li>
           <li><strong>E</strong> – Free Transform Tool</li>
+          <li><strong>Cmd/Ctrl + B</strong> – Text Frame Options</li>
           <li><strong>Cmd/Ctrl + Shift + [</strong> – Send to Back</li>
           <li><strong>Cmd/Ctrl + Shift + ]</strong> – Bring to Front</li>
           <li><strong>Cmd/Ctrl + [</strong> – Send Backward</li>
           <li><strong>Cmd/Ctrl + ]</strong> – Bring Forward</li>
-          <li><strong>Cmd/Ctrl + G</strong> – Group Selected Objects</li>
         </ol>
 
         <h3>Layers and Colors</h3>
@@ -825,6 +825,90 @@ function initBlogReaderModal() {
           <li><strong>Cmd/Ctrl + Alt + Shift + M</strong> – New Gradient Swatch</li>
           <li><strong>Cmd/Ctrl + 3</strong> – Hide Selection</li>
           <li><strong>Cmd/Ctrl + Alt + 3</strong> – Show All</li>
+        </ol>
+
+        <h3>Tables and Data</h3>
+        <ol start="41">
+          <li><strong>Cmd/Ctrl + Alt + Shift + T</strong> – Table Panel</li>
+          <li><strong>Cmd/Ctrl + Option/Alt + Shift + T</strong> – Insert Table</li>
+          <li><strong>Cmd/Ctrl + Option/Alt + Shift + B</strong> – Table Options</li>
+          <li><strong>Cmd/Ctrl + Option/Alt + Shift + C</strong> – Cell Options</li>
+          <li><strong>Tab</strong> – Move to Next Cell</li>
+          <li><strong>Shift + Tab</strong> – Move to Previous Cell</li>
+          <li><strong>Esc</strong> – Select Table / Cell</li>
+          <li><strong>Cmd/Ctrl + A</strong> (inside cell) – Select All Cell Contents</li>
+          <li><strong>Cmd/Ctrl + Shift + Page Up/Down</strong> – Add/Delete Rows</li>
+          <li><strong>Cmd/Ctrl + Alt + Shift + H</strong> – Convert Table to Text</li>
+        </ol>
+
+        <h3>Formatting and Styles</h3>
+        <ol start="51">
+          <li><strong>F11</strong> – Paragraph Styles Panel</li>
+          <li><strong>Shift + F11</strong> – Character Styles Panel</li>
+          <li><strong>Shift + F4</strong> – Object Styles Panel</li>
+          <li><strong>Cmd/Ctrl + Shift + B</strong> – Bold Text</li>
+          <li><strong>Cmd/Ctrl + Shift + I</strong> – Italic Text</li>
+          <li><strong>Cmd/Ctrl + Shift + U</strong> – Underline Text</li>
+          <li><strong>Cmd/Ctrl + Shift + /</strong> – Strikethrough Text</li>
+          <li><strong>Cmd/Ctrl + Shift + Alt + =</strong> – Superscript</li>
+          <li><strong>Cmd/Ctrl + Shift + Alt + -</strong> – Subscript</li>
+          <li><strong>Cmd/Ctrl + Alt + J</strong> – Paragraph Rules</li>
+        </ol>
+
+        <h3>Exporting and Printing</h3>
+        <ol start="61">
+          <li><strong>Cmd/Ctrl + E</strong> – Export Document</li>
+          <li><strong>Cmd/Ctrl + P</strong> – Print Document</li>
+          <li><strong>Cmd/Ctrl + Alt + P</strong> – Print Booklet</li>
+          <li><strong>Cmd/Ctrl + Shift + Option/Alt + P</strong> – Package Document</li>
+          <li><strong>Cmd/Ctrl + Shift + Option/Alt + S</strong> – Save for Web / PDF Presets</li>
+          <li><strong>Cmd/Ctrl + S</strong> – Save Document</li>
+          <li><strong>Cmd/Ctrl + Shift + S</strong> – Save As</li>
+          <li><strong>Cmd/Ctrl + Alt + S</strong> – Save a Copy</li>
+          <li><strong>Cmd/Ctrl + K</strong> – Preferences</li>
+          <li><strong>Cmd/Ctrl + W</strong> – Close Document</li>
+        </ol>
+
+        <h3>Frame and Image Fitting</h3>
+        <ol start="71">
+          <li><strong>Cmd/Ctrl + Alt + C</strong> – Fit Frame to Content</li>
+          <li><strong>Cmd/Ctrl + Alt + E</strong> – Center Content in Frame</li>
+          <li><strong>Cmd/Ctrl + Shift + Alt + E</strong> – Fill Frame Proportionally</li>
+          <li><strong>Cmd/Ctrl + Shift + Alt + C</strong> – Fit Content Proportionally</li>
+          <li><strong>Cmd/Ctrl + F</strong> – Find / Change</li>
+          <li><strong>Cmd/Ctrl + I</strong> – Check Spelling</li>
+          <li><strong>Cmd/Ctrl + Alt + I</strong> – Show Hidden Characters</li>
+          <li><strong>Cmd/Ctrl + H</strong> – Hide Guides</li>
+          <li><strong>Cmd/Ctrl + Alt + G</strong> – Create Grid</li>
+          <li><strong>Cmd/Ctrl + Option/Alt + N</strong> – New Document from Preset</li>
+        </ol>
+
+        <h3>Panels and Windows</h3>
+        <ol start="81">
+          <li><strong>Shift + F8</strong> – Links Panel</li>
+          <li><strong>F8</strong> – Info Panel</li>
+          <li><strong>Shift + F7</strong> – Align Panel</li>
+          <li><strong>Shift + F9</strong> – Path Finder Panel</li>
+          <li><strong>Cmd/Ctrl + Shift + F9</strong> – Transform Panel</li>
+          <li><strong>Cmd/Ctrl + Shift + F11</strong> – Attributes Panel</li>
+          <li><strong>Cmd/Ctrl + Shift + F8</strong> – Trap Presets</li>
+          <li><strong>Cmd/Ctrl + Option/Alt + 8</strong> – Toggle Clipping Path</li>
+          <li><strong>Cmd/Ctrl + Option/Alt + Shift + D</strong> – Duplicate and Repeat</li>
+          <li><strong>Cmd/Ctrl + Shift + Option/Alt + K</strong> – Keyboard Shortcuts Dialog</li>
+        </ol>
+
+        <h3>System & Document Preferences</h3>
+        <ol start="91">
+          <li><strong>Cmd/Ctrl + Option/Alt + U</strong> – Toggle Units & Rulers</li>
+          <li><strong>Cmd/Ctrl + Shift + Option/Alt + M</strong> – Master Page Settings</li>
+          <li><strong>Cmd/Ctrl + Option/Alt + H</strong> – High Quality Display Performance</li>
+          <li><strong>Cmd/Ctrl + Option/Alt + O</strong> – Optimize Display Performance</li>
+          <li><strong>Cmd/Ctrl + Option/Alt + Z</strong> – Revert Document to Saved</li>
+          <li><strong>Cmd/Ctrl + Shift + Option/Alt + Z</strong> – Undo History</li>
+          <li><strong>Cmd/Ctrl + Alt + Shift + V</strong> – Paste in Place</li>
+          <li><strong>Cmd/Ctrl + Shift + V</strong> – Paste Without Formatting</li>
+          <li><strong>Cmd/Ctrl + Option/Alt + Shift + E</strong> – Export Fast PDF</li>
+          <li><strong>Cmd/Ctrl + Option/Alt + Shift + W</strong> – Close All Documents</li>
         </ol>
       `
     },
