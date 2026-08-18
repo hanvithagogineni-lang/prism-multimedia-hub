@@ -918,37 +918,149 @@ function initBlogReaderModal() {
     {
       id: 2,
       cat: 'ILLUSTRATOR',
-      title: 'Unlock Efficiency: Top 100 Adobe Illustrator Keyboard Shortcuts',
+      title: 'Unlock Efficiency: Top 100 Adobe Illustrator Keyboard Shortcuts You Need to Know',
       img: './blog-poster-2.jpg',
       content: `
-        <p>Ever feel like your workflow could use a turbo boost? Master these 100 Illustrator shortcuts for seamless vector creation. From precision pen tool path adjustment to instant alignment and color palette swatches, mastering keyboard hotkeys in Adobe Illustrator will accelerate your digital artwork output tenfold.</p>
+        <p>Ever caught yourself clicking through menus for what feels like the hundredth time in Adobe Illustrator? We've all been there. But what if I told you there's a faster, smoother path to unleashing your creativity? Enter keyboard shortcuts – the unsung heroes of the design world. They might just be a combination of keys, but they hold the power to shave hours off your projects, letting you focus more on the creative side of things. In this comprehensive guide, we'll walk you through the top 100 Adobe Illustrator keyboard shortcuts that every designer should have up their sleeve. Ready to speed up your workflow and make your design process as sleek as your creations? Let's dive in!</p>
         
-        <h3>Essential Vector Drawing Shortcuts</h3>
+        <h3>Navigation & Basic Commands</h3>
         <ol>
-          <li><strong>P</strong> – Pen Tool</li>
-          <li><strong>Shift + C</strong> – Anchor Point Tool</li>
-          <li><strong>A</strong> – Direct Selection Tool</li>
           <li><strong>V</strong> – Selection Tool</li>
-          <li><strong>M</strong> – Rectangle Tool</li>
-          <li><strong>L</strong> – Ellipse Tool</li>
-          <li><strong>N</strong> – Pencil Tool</li>
+          <li><strong>T</strong> – Type Tool</li>
+          <li><strong>P</strong> – Pen Tool</li>
+          <li><strong>B</strong> – Brush Tool</li>
           <li><strong>Shift + B</strong> – Blob Brush Tool</li>
-          <li><strong>Shift + E</strong> – Eraser Tool</li>
-          <li><strong>R</strong> – Rotate Tool</li>
+          <li><strong>N</strong> – Pencil Tool</li>
+          <li><strong>L</strong> – Ellipse Tool</li>
+          <li><strong>M</strong> – Rectangle Tool</li>
+          <li><strong>Shift + L</strong> – Polygon Tool</li>
+          <li><strong>Cmd/Ctrl + 0</strong> – Fit Artboard in Window</li>
         </ol>
 
-        <h3>Artboard & Canvas Navigation</h3>
+        <h3>Manipulating Objects</h3>
         <ol start="11">
-          <li><strong>Shift + O</strong> – Artboard Tool</li>
-          <li><strong>Cmd/Ctrl + 0</strong> – Fit Artboard in Window</li>
-          <li><strong>Cmd/Ctrl + Alt + 0</strong> – Fit All in Window</li>
-          <li><strong>Spacebar (Hold)</strong> – Hand Tool / Pan Canvas</li>
-          <li><strong>Cmd/Ctrl + Y</strong> – Toggle Outline View Mode</li>
-          <li><strong>Cmd/Ctrl + Shift + D</strong> – Show/Hide Transparency Grid</li>
-          <li><strong>Cmd/Ctrl + U</strong> – Toggle Smart Guides</li>
-          <li><strong>Cmd/Ctrl + "</strong> – Toggle Grid</li>
+          <li><strong>Cmd/Ctrl + C</strong> – Copy</li>
+          <li><strong>Cmd/Ctrl + V</strong> – Paste</li>
+          <li><strong>Cmd/Ctrl + Shift + V</strong> – Paste in Place</li>
+          <li><strong>Cmd/Ctrl + F</strong> – Paste in Front</li>
+          <li><strong>Cmd/Ctrl + B</strong> – Paste Behind</li>
+          <li><strong>Cmd/Ctrl + D</strong> – Transform Again</li>
+          <li><strong>Cmd/Ctrl + G</strong> – Group</li>
+          <li><strong>Cmd/Ctrl + Shift + G</strong> – Ungroup</li>
+          <li><strong>Cmd/Ctrl + E</strong> – Merge</li>
+          <li><strong>Cmd/Ctrl + Alt + 2</strong> – Unlock All</li>
+        </ol>
+
+        <h3>Viewing & Zooming</h3>
+        <ol start="21">
+          <li><strong>Cmd/Ctrl + +</strong> – Zoom In</li>
+          <li><strong>Cmd/Ctrl + -</strong> – Zoom Out</li>
+          <li><strong>Cmd/Ctrl + 1</strong> – Actual Size</li>
+          <li><strong>Cmd/Ctrl + H</strong> – Hide Edges</li>
+          <li><strong>Cmd/Ctrl + Cmd/Ctrl</strong> – Hide Artboards</li>
+          <li><strong>F</strong> – Full Screen Mode</li>
           <li><strong>Cmd/Ctrl + R</strong> – Show/Hide Rulers</li>
-          <li><strong>Cmd/Ctrl + 5</strong> – Make Guides</li>
+          <li><strong>Cmd/Ctrl + ;</strong> – Show/Hide Guides</li>
+          <li><strong>Cmd/Ctrl + ' (apostrophe)</strong> – Show/Hide Grid</li>
+          <li><strong>Cmd/Ctrl + Y</strong> – Outline View</li>
+        </ol>
+
+        <h3>Text & Fonts</h3>
+        <ol start="31">
+          <li><strong>Cmd/Ctrl + T</strong> – Show/Hide Character Panel</li>
+          <li><strong>Cmd/Ctrl + Shift + O</strong> – Create Outlines</li>
+          <li><strong>Cmd/Ctrl + Alt + Shift + T</strong> – Touch Type Tool</li>
+          <li><strong>Cmd/Ctrl + Shift + K</strong> – Change Text Case</li>
+          <li><strong>Cmd/Ctrl + Alt + X</strong> – Toggle Between Area and Point Type</li>
+          <li><strong>Cmd/Ctrl + B</strong> – Text Bold</li>
+          <li><strong>Cmd/Ctrl + I</strong> – Text Italic</li>
+          <li><strong>Cmd/Ctrl + Shift + &lt;</strong> – Decrease Font Size</li>
+          <li><strong>Cmd/Ctrl + Shift + &gt;</strong> – Increase Font Size</li>
+          <li><strong>Cmd/Ctrl + Alt + Shift + M</strong> – Roman Hanging Punctuation</li>
+        </ol>
+
+        <h3>Layers & Selection</h3>
+        <ol start="41">
+          <li><strong>Cmd/Ctrl + L</strong> – New Layer</li>
+          <li><strong>Cmd/Ctrl + Shift + L</strong> – New Sublayer</li>
+          <li><strong>Cmd/Ctrl + Alt + L</strong> – Locate Layer</li>
+          <li><strong>Cmd/Ctrl + Shift + [</strong> – Send to Back</li>
+          <li><strong>Cmd/Ctrl + Shift + ]</strong> – Bring to Front</li>
+          <li><strong>Cmd/Ctrl + [</strong> – Send Backward</li>
+          <li><strong>Cmd/Ctrl + ]</strong> – Bring Forward</li>
+          <li><strong>Cmd/Ctrl + 2</strong> – Lock Selection</li>
+          <li><strong>Cmd/Ctrl + 3</strong> – Hide Selection</li>
+          <li><strong>Cmd/Ctrl + Alt + 3</strong> – Show All Hidden</li>
+        </ol>
+
+        <h3>Colors & Swatches</h3>
+        <ol start="51">
+          <li><strong>X</strong> – Toggle Fill and Stroke</li>
+          <li><strong>Shift + X</strong> – Swap Fill and Stroke</li>
+          <li><strong>D</strong> – Default Fill and Stroke</li>
+          <li><strong>&lt;</strong> – Apply Color Fill</li>
+          <li><strong>&gt;</strong> – Apply Gradient Fill</li>
+          <li><strong>/</strong> – Apply None Fill</li>
+          <li><strong>I</strong> – Eyedropper Tool</li>
+          <li><strong>K</strong> – Live Paint Bucket</li>
+          <li><strong>Shift + K</strong> – Live Paint Selection Tool</li>
+          <li><strong>Shift + E</strong> – Eraser Tool</li>
+        </ol>
+
+        <h3>Transforming & Shaping</h3>
+        <ol start="61">
+          <li><strong>R</strong> – Rotate Tool</li>
+          <li><strong>O</strong> – Reflect Tool</li>
+          <li><strong>S</strong> – Scale Tool</li>
+          <li><strong>Shift + R</strong> – Warp Tool</li>
+          <li><strong>Shift + W</strong> – Width Tool</li>
+          <li><strong>Shift + M</strong> – Shape Builder Tool</li>
+          <li><strong>Shift + C</strong> – Anchor Point Tool</li>
+          <li><strong>+</strong> – Add Anchor Point Tool</li>
+          <li><strong>-</strong> – Delete Anchor Point Tool</li>
+          <li><strong>Cmd/Ctrl + Alt + B</strong> – Make Blend</li>
+        </ol>
+
+        <h3>Effects & Appearance</h3>
+        <ol start="71">
+          <li><strong>Shift + F6</strong> – Appearance Panel</li>
+          <li><strong>Cmd/Ctrl + Shift + F9</strong> – Pathfinder Panel</li>
+          <li><strong>Cmd/Ctrl + Shift + F10</strong> – Transparency Panel</li>
+          <li><strong>Cmd/Ctrl + F11</strong> – Symbols Panel</li>
+          <li><strong>Shift + F5</strong> – Graphic Styles Panel</li>
+          <li><strong>Shift + F7</strong> – Align Panel</li>
+          <li><strong>Cmd/Ctrl + Shift + F11</strong> – Attributes Panel</li>
+          <li><strong>Cmd/Ctrl + Option/Alt + E</strong> – Export for Screens</li>
+          <li><strong>Cmd/Ctrl + Shift + Alt + S</strong> – Save for Web</li>
+          <li><strong>Cmd/Ctrl + Shift + S</strong> – Save As</li>
+        </ol>
+
+        <h3>Advanced Pathfinder & Masks</h3>
+        <ol start="81">
+          <li><strong>Cmd/Ctrl + 7</strong> – Make Clipping Mask</li>
+          <li><strong>Cmd/Ctrl + Alt + 7</strong> – Release Clipping Mask</li>
+          <li><strong>Cmd/Ctrl + 8</strong> – Make Compound Path</li>
+          <li><strong>Cmd/Ctrl + Alt + 8</strong> – Release Compound Path</li>
+          <li><strong>Cmd/Ctrl + Shift + D</strong> – Show Transparency Grid</li>
+          <li><strong>Cmd/Ctrl + Alt + P</strong> – Document Setup</li>
+          <li><strong>Cmd/Ctrl + K</strong> – Preferences</li>
+          <li><strong>Cmd/Ctrl + Alt + K</strong> – Keyboard Shortcuts Dialog</li>
+          <li><strong>Cmd/Ctrl + W</strong> – Close Document</li>
+          <li><strong>Cmd/Ctrl + Q</strong> – Quit Illustrator</li>
+        </ol>
+
+        <h3>Conclusion & Mastery</h3>
+        <ol start="91">
+          <li><strong>Cmd/Ctrl + Option/Alt + N</strong> – New Document from Template</li>
+          <li><strong>Cmd/Ctrl + Shift + P</strong> – Package Document</li>
+          <li><strong>Cmd/Ctrl + Shift + Option/Alt + P</strong> – Perspective Grid Tool</li>
+          <li><strong>Shift + V</strong> – Perspective Selection Tool</li>
+          <li><strong>Cmd/Ctrl + Shift + I</strong> – Hide Perspective Grid</li>
+          <li><strong>Cmd/Ctrl + Option/Alt + Shift + Y</strong> – Proof Colors</li>
+          <li><strong>Cmd/Ctrl + Shift + H</strong> – Hide Artboards</li>
+          <li><strong>Cmd/Ctrl + Option/Alt + 0</strong> – Fit All Artboards in Window</li>
+          <li><strong>Cmd/Ctrl + Shift + Z</strong> – Redo</li>
+          <li><strong>Cmd/Ctrl + Z</strong> – Undo</li>
         </ol>
       `
     },
