@@ -1221,82 +1221,112 @@ function initBlogReaderModal() {
       title: 'Exploring the Intersection of Multimedia and Social Media',
       img: './blog-poster-4.jpg',
       content: `
-        <p>The significance of multimedia has further amplified the reach, engagement, and potential of modern digital brand campaigns. From micro-animations on Instagram Reels to high-fidelity 3D motion graphics on TikTok and YouTube Shorts, visual storytelling has transformed digital advertising into an immersive experience.</p>
-
-        <h3>Key Trends in Social Media Visual Strategy</h3>
-        <ul>
-          <li><strong>Short-form Video Motion</strong>: 15-second animated infographics drive 3x higher retention.</li>
-          <li><strong>3D Brand Assets</strong>: Hyper-realistic product renders enhance conversion rates on ad campaigns.</li>
-          <li><strong>Dynamic Micro-Interactions</strong>: Custom Lottie animations increase app engagement metrics.</li>
-        </ul>
+        <p>The Significance of multimedia has further amplified the potential of social media, allowing users to create and share a wide variety of content. This blog article explores the importance of multimedia on social media, its evolution, impact, and potential future developments. Multimedia means content that combines different forms of media, such as text, images, videos, and audio. Social media refers to online platforms that enable users to create, share, and interact with content and other users.</p>
+        <p>Multimedia is important in social media as it allows users to express themselves more creatively and engage in a more visually stimulating and engaging experience. Multimedia helps users communicate their ideas more effectively, entertain and inform their audiences, and create a more authentic and personal connection with their followers. It also enables brands and businesses to generate more engagement and reach a broader audience through compelling content. This article addresses explore the significance of multimedia on social media. It elaborates the different types of multimedia available, their impact on user behaviour, the risks, and limitations of using multimedia, and the future potential of multimedia on social media.</p>
+        <h3>Types of Multimedia on Social Media</h3>
+        <p><strong>Images</strong>: Images are a prevalent form of multimedia in social media. They can help to convey emotions, demonstrate products and services, and help build a brand’s image.</p>
+        <p><strong>Videos</strong>: Videos provide a highly engaging and interactive experience that allows users to tell a more visual and dynamic story. Brands and businesses use videos to reveal their product or service’s benefits, demonstrate how to use them, or tell their brand’s story.</p>
+        <p><strong>Infographics</strong>: Infographics has its own importance as they convey the data which has abundant information in very easy and understanding manner. In simple terms, visually easy to understand and communicate.</p>
+        <p><strong>Audios & Live Streaming</strong>: Audio content has become very popular in social media with the rise of podcasting. Live streaming provides real-time engagement with audiences, allowing users to conduct webinars, Q&A sessions, interviews, and other events.</p>
+        <h3>Impact of Multimedia on Social Media</h3>
+        <p>As multimedia expands on social media platforms, users too are increasingly adopting it. Most users prefer multimedia as opposed to traditional text-only content. According to Cisco, by 2022, 82% of all consumer internet traffic will be video traffic. Multimedia has a significant impact on user behavior on social media. Multimedia content increases user engagement, creates brand loyalty, helps in building a community, and increases conversion rates.</p>
       `
     },
     {
       id: 5,
       cat: 'COMPANY',
-      title: 'Why should I opt for PRISM MULTIMEDIA to boost my career?',
+      title: 'Why should I opt for PRISM MULTIMEDIA to boost my career? Top 10 Reasons',
       img: './blog-poster-5.jpg',
       content: `
-        <p>Choosing the right institute or coaching is the first step for building a successful career in graphic design, motion graphics, and VFX. Prism Multimedia in Hyderabad stands out with 24+ years of industry experience, 100% placement support, certified master trainers, and hands-on live studio projects.</p>
-
-        <h3>Key Highlights of Prism Multimedia</h3>
-        <ul>
-          <li><strong>24+ Years of Industry Leadership</strong>: Training over 15,000+ successful alumni placed at top MNCs & studios worldwide.</li>
-          <li><strong>Live Studio Workflow</strong>: Practical training on real client projects with Adobe, Autodesk, & Unreal Engine pipelines.</li>
-          <li><strong>Dedicated Placement Cell</strong>: 100% placement assistance with top design agencies, game studios, and IT firms.</li>
-        </ul>
+        <p>Choosing Right institute or coaching is the first step for successful career. It is very important to choose top notch institute when it comes to Multimedia training institute in Hyderabad.</p>
+        <h3>1. Experienced Faculty</h3>
+        <p>Prism Multimedia takes great pride in its team of highly experienced faculty members who are experts in their respective fields of Graphic Design, UI/UX, Animation, Motion Graphics, and VFX.</p>
+        <h3>2. Industry-Relevant Curriculum</h3>
+        <p>The curriculum at Prism Multimedia is thoughtfully crafted to align with the current demands of the multimedia industry, ensuring students learn modern studio pipelines and tools.</p>
+        <h3>3. State-of-the-Art Infrastructure</h3>
+        <p>Equipped with high-end workstations, advanced software suites, and production studios, Prism Multimedia provides an ideal environment for hands-on learning.</p>
+        <h3>4. Comprehensive Placement Support</h3>
+        <p>Prism Multimedia offers 100% placement assistance, connecting students with top companies, design studios, and corporate hiring partners across India.</p>
+        <h3>5. Hands-on Project Experience</h3>
+        <p>Students work on real-world projects and build portfolio case studies that demonstrate practical capabilities to potential employers.</p>
       `
     },
     {
       id: 6,
       cat: 'UI DESIGN',
-      title: 'Motion Graphics in User Interface (UI) Design.',
+      title: 'Motion Graphics in User Interface (UI) Design',
       img: './blog-poster-6.jpg',
       content: `
-        <p>Motion graphics play an important role in modern user interface (UI) design by making interactions fluid, intuitive, and visually captivating. Motion guides user attention, provides instant feedback, and enhances overall product usability across mobile apps and web platforms.</p>
-
-        <h3>Core UI Motion Principles</h3>
-        <ul>
-          <li><strong>Easing & Timing</strong>: Custom cubic-bezier curves for natural element transitions.</li>
-          <li><strong>Visual Feedback</strong>: Micro-animations on button clicks and state changes.</li>
-          <li><strong>Spatial Orientation</strong>: Smooth slide and scale transitions for tab navigation.</li>
-        </ul>
+        <p>Motion graphics have an important role in modern user interface (UI) design, transforming static interfaces into dynamic, intuitive visual experiences.</p>
+        <h3>The Importance of Motion Graphics in UI Design</h3>
+        <p>Motion graphics are visual elements that bring movement and animation to digital interfaces. They capture user attention, guide navigation flows, and communicate interface hierarchy seamlessly.</p>
+        <h3>1. Grabbing User Attention</h3>
+        <p>Movement naturally draws the human eye. Micro-animations highlight interactive elements, new notifications, and key call-to-action buttons without overwhelming the user.</p>
+        <h3>2. Enhancing Visual Feedback</h3>
+        <p>Animated button states, loading spinners, and successful submission checkmarks provide immediate feedback, reassuring users that their action was recognized.</p>
+        <h3>3. Improving Spatial Orientation</h3>
+        <p>Transitions such as sliding panels, expanding cards, and page flips help users understand where they are within an application's structure.</p>
       `
     },
     {
       id: 7,
       cat: 'DESIGN',
-      title: 'Top 10 Creative Skill to learn in 2023',
+      title: 'Top 10 Creative Skills to Learn for a High-Growth Career',
       img: './blog-poster-7.jpg',
       content: `
-        <p>As digital usage has exponentially increased, creative skills have become paramount for modern digital careers. Here are the top 10 high-demand skills to master: Graphic Design, UI/UX Architecture, 3D Animation, Motion Design, VFX Compositing, Video Editing, Brand Storytelling, Prompt Engineering, Interactive Layouts, and Digital Painting.</p>
+        <p>As digital usage has exponentially increased, creative skills have become highly in-demand across technology, entertainment, advertising, and corporate sectors.</p>
+        <h3>1. Graphic Design</h3>
+        <p>Graphic design is an essential skill in the multimedia industry. It involves creating eye-catchy visual layouts, brand identities, and commercial graphics.</p>
+        <h3>2. UI/UX Design</h3>
+        <p>Designing user-centric interfaces and seamless user experiences for web and mobile applications is one of the highest-paying creative skills today.</p>
+        <h3>3. Motion Graphics & Animation</h3>
+        <p>Combining visual art with motion to create title sequences, explainer videos, and social media animations opens doors to film, TV, and advertising careers.</p>
+        <h3>4. Video Editing & VFX</h3>
+        <p>As video content dominates social platforms and streaming services, skilled video editors and VFX compositors are needed worldwide.</p>
       `
     },
     {
       id: 8,
       cat: 'CAREER',
-      title: 'Is Multimedia a Good Career Choice in 2023?',
+      title: 'Is Multimedia a Good Career Choice? Complete Industry Insights',
       img: './blog-poster-8.jpg',
       content: `
-        <p>In today's digital age, the demand for multimedia professionals has skyrocketed across media, tech, advertising, gaming, and creative industries. Career paths in multimedia offer high salary packages, creative freedom, global remote opportunities, and rapid career progression.</p>
+        <p>In today's digital age, the demand for multimedia professionals has skyrocketed. From dynamic websites and mobile apps to blockbusters and digital campaigns, multimedia shapes modern communication.</p>
+        <h3>1. Industry Overview</h3>
+        <p>The multimedia industry encompasses graphic design, web design, UI/UX, animation, VFX, gaming, digital marketing, and video production, offering diverse career pathways.</p>
+        <h3>2. High Job Demand</h3>
+        <p>Companies across all sectors require multimedia talent to build visual branding, user experiences, and marketing collateral, resulting in consistent hiring demand.</p>
+        <h3>3. Competitive Salaries & Growth</h3>
+        <p>Skilled creative professionals enjoy competitive starting salaries, rapid promotion opportunities, and flexible freelancing or remote working options.</p>
       `
     },
     {
       id: 9,
       cat: 'DESIGN',
-      title: 'Top 10 Qualities of Graphic Designer – What Makes You a Good Designer',
+      title: 'Top 10 Qualities of a Successful Graphic Designer',
       img: './blog-poster-9.jpg',
       content: `
-        <p>Graphic design is part of every human on this planet. Learn the essential qualities that distinguish top professional designers: Keen Eye for Detail, Mastery of Color Theory, Strong Typographic Sense, Problem-Solving Mindset, Adaptability, Communication Skills, Technical Proficiency, Curiosity, Time Management, and Passion for Creativity.</p>
+        <p>Graphic design is part of every human on this planet—from the logos on our favorite brands to advertisements and app interfaces.</p>
+        <p>A graphic designer needs to have a keen eye for detail, an ability to communicate effectively, and mastery over design principles and industry software.</p>
+        <h3>1. Creativity & Innovation</h3>
+        <p>The ability to solve visual problems with original, fresh ideas is the hallmark of a great graphic designer.</p>
+        <h3>2. Strong Understanding of Color & Typography</h3>
+        <p>Mastering color psychology, typography hierarchy, and composition grid systems ensures designs are visually pleasing and readable.</p>
+        <h3>3. Adaptability & Continuous Learning</h3>
+        <p>Design trends and software tools evolve quickly; top designers continuously refine their skills and adapt to new technologies.</p>
       `
     },
     {
       id: 10,
       cat: 'INSIGHTS',
-      title: 'Graphic Designing – Expectations Vs. Reality',
+      title: 'Graphic Designing — Expectations Vs. Reality',
       img: './blog-poster-10.jpg',
       content: `
-        <p>Recent years have seen significant demand for visual graphics, and understanding industry realities prepares you for real client work. Learn how to bridge the gap between creative artistic freedom and real-world commercial client expectations.</p>
+        <p>In recent years, there has been significant demand for visual graphics, and so has the need for skilled & effective graphic designers.</p>
+        <p>As a result, expectations from graphic designers have changed as well. However, many aspiring designers hold misconceptions about the industry.</p>
+        <h3>Expectation vs. Reality</h3>
+        <p><strong>Expectation</strong>: Graphic designers only need to know how to use design software.<br/><strong>Reality</strong>: Software is just a tool; real design requires critical thinking, problem-solving, understanding brand goals, and communicating effectively.</p>
+        <p><strong>Expectation</strong>: You get total artistic freedom on every project.<br/><strong>Reality</strong>: Commercial design involves working within brand guidelines, client feedback, and functional constraints.</p>
       `
     },
     {
@@ -1305,7 +1335,13 @@ function initBlogReaderModal() {
       title: 'Mastering the Art of Portfolio Creation in the Design Industry',
       img: './blog-poster-11.jpg',
       content: `
-        <p>Building an effective portfolio is crucial for any designer looking to showcase their work and secure top agency opportunities. A great portfolio highlights problem-solving processes, case studies, visual craft, and personal brand identity.</p>
+        <p>In today's digital age, having a compelling portfolio is essential for securing client projects and landing top agency roles.</p>
+        <h3>1. Curate Your Best Work</h3>
+        <p>Quality always triumphs over quantity. Highlight 5 to 8 of your strongest case studies that showcase diverse skill sets and problem-solving abilities.</p>
+        <h3>2. Show the Process</h3>
+        <p>Employers want to see how you think. Include wireframes, sketches, mood boards, and process notes alongside final polished designs.</p>
+        <h3>3. Customize for Your Target Role</h3>
+        <p>Tailor your portfolio presentation to highlight work relevant to the specific career path you are pursuing—whether UI/UX, Motion Graphics, or Brand Identity.</p>
       `
     },
     {
@@ -1314,7 +1350,11 @@ function initBlogReaderModal() {
       title: 'The Evolution of Motion Graphics: From Cinema to Digital Media',
       img: './blog-poster-12.jpg',
       content: `
-        <p>Motion graphics have transformed from simple cinematic opening titles into complex interactive visual storytelling across digital media, streaming platforms, broadcast television, and mobile applications.</p>
+        <p>Motion graphics combine the art of graphic design with animation and cinematic techniques to create visually compelling moving imagery.</p>
+        <h3>The Origins of Motion Graphics</h3>
+        <p>From early cinematic title sequences created by visionaries like Saul Bass to modern digital media, motion graphics have evolved into an indispensable art form.</p>
+        <h3>Modern Applications in Digital Media</h3>
+        <p>Today, motion graphics power user interface animations, commercial advertisements, broadcast graphics, social media reels, and visual effects in film and gaming.</p>
       `
     }
   ];

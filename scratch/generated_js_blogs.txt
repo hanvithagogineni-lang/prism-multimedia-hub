@@ -1,0 +1,135 @@
+    {
+      id: 4,
+      cat: 'SOCIAL MEDIA',
+      title: 'Exploring the Intersection of Multimedia and Social Media',
+      img: './blog-poster-4.jpg',
+      content: `
+        <h3>Keyboard Shortcuts</h3>
+        <p>Unlock Efficiency: Top 100 Adobe Illustrator Keyboard Shortcuts You Need to Know</p>
+        <h3>Keyboard Shortcuts</h3>
+        <h3>Master Adobe Photoshop: Top 100 Time-Saving Shortcuts You Need to Know</h3>
+        <p>Why should I opt for PRISM MULTIMEDIA to boost my career. Here are Top 10 Reasons.</p>
+        <p>Motion Graphics in User Interface (UI) Design.</p>
+        <p>Prism Multimedia is an enterprise run by experienced professionals with years of hands-on industry expertise in both teaching and development areas. Established in 1999 to impart training in multimedia applications….</p>
+      `
+    },
+    {
+      id: 5,
+      cat: 'COMPANY',
+      title: 'Why should I opt for PRISM MULTIMEDIA to boost my career? Top 10 Reasons',
+      img: './blog-poster-5.jpg',
+      content: `
+        <h3>Keyboard Shortcuts</h3>
+        <p>Unlock Efficiency: Top 100 Adobe Illustrator Keyboard Shortcuts You Need to Know</p>
+        <h3>Keyboard Shortcuts</h3>
+        <h3>Master Adobe Photoshop: Top 100 Time-Saving Shortcuts You Need to Know</h3>
+        <p>Exploring the Intersection of Multimedia and Social Media.</p>
+        <p>Motion Graphics in User Interface (UI) Design.</p>
+        <p>Prism Multimedia is an enterprise run by experienced professionals with years of hands-on industry expertise in both teaching and development areas. Established in 1999 to impart training in multimedia applications….</p>
+      `
+    },
+    {
+      id: 6,
+      cat: 'UI DESIGN',
+      title: 'Motion Graphics in User Interface (UI) Design',
+      img: './blog-poster-6.jpg',
+      content: `
+        <h3>Keyboard Shortcuts</h3>
+        <p>Unlock Efficiency: Top 100 Adobe Illustrator Keyboard Shortcuts You Need to Know</p>
+        <h3>Keyboard Shortcuts</h3>
+        <h3>Master Adobe Photoshop: Top 100 Time-Saving Shortcuts You Need to Know</h3>
+        <p>Exploring the Intersection of Multimedia and Social Media.</p>
+        <p>Why should I opt for PRISM MULTIMEDIA to boost my career. Here are Top 10 Reasons.</p>
+        <p>Prism Multimedia is an enterprise run by experienced professionals with years of hands-on industry expertise in both teaching and development areas. Established in 1999 to impart training in multimedia applications….</p>
+      `
+    },
+    {
+      id: 7,
+      cat: 'DESIGN',
+      title: 'Top 10 Creative Skills to Learn for a High-Growth Career',
+      img: './blog-poster-7.jpg',
+      content: `
+        <h3>Keyboard Shortcuts</h3>
+        <p>Unlock Efficiency: Top 100 Adobe Illustrator Keyboard Shortcuts You Need to Know</p>
+        <h3>Keyboard Shortcuts</h3>
+        <h3>Master Adobe Photoshop: Top 100 Time-Saving Shortcuts You Need to Know</h3>
+        <p>Exploring the Intersection of Multimedia and Social Media.</p>
+        <p>Why should I opt for PRISM MULTIMEDIA to boost my career. Here are Top 10 Reasons.</p>
+        <p>Prism Multimedia is an enterprise run by experienced professionals with years of hands-on industry expertise in both teaching and development areas. Established in 1999 to impart training in multimedia applications….</p>
+      `
+    },
+    {
+      id: 8,
+      cat: 'CAREER',
+      title: 'Is Multimedia a Good Career Choice? Complete Industry Insights',
+      img: './blog-poster-8.jpg',
+      content: `
+        <h3>Keyboard Shortcuts</h3>
+        <p>Unlock Efficiency: Top 100 Adobe Illustrator Keyboard Shortcuts You Need to Know</p>
+        <h3>Keyboard Shortcuts</h3>
+        <h3>Master Adobe Photoshop: Top 100 Time-Saving Shortcuts You Need to Know</h3>
+        <p>Exploring the Intersection of Multimedia and Social Media.</p>
+        <p>Why should I opt for PRISM MULTIMEDIA to boost my career. Here are Top 10 Reasons.</p>
+        <p>Prism Multimedia is an enterprise run by experienced professionals with years of hands-on industry expertise in both teaching and development areas. Established in 1999 to impart training in multimedia applications….</p>
+      `
+    },
+    {
+      id: 9,
+      cat: 'DESIGN',
+      title: 'Top 10 Qualities of a Successful Graphic Designer',
+      img: './blog-poster-9.jpg',
+      content: `
+        <h3>Keyboard Shortcuts</h3>
+        <p>Unlock Efficiency: Top 100 Adobe Illustrator Keyboard Shortcuts You Need to Know</p>
+        <h3>Keyboard Shortcuts</h3>
+        <h3>Master Adobe Photoshop: Top 100 Time-Saving Shortcuts You Need to Know</h3>
+        <p>Exploring the Intersection of Multimedia and Social Media.</p>
+        <p>Why should I opt for PRISM MULTIMEDIA to boost my career. Here are Top 10 Reasons.</p>
+        <p>Prism Multimedia is an enterprise run by experienced professionals with years of hands-on industry expertise in both teaching and development areas. Established in 1999 to impart training in multimedia applications….</p>
+      `
+    },
+    {
+      id: 10,
+      cat: 'INSIGHTS',
+      title: 'Graphic Designing — Expectations Vs. Reality',
+      img: './blog-poster-10.jpg',
+      content: `
+        <h3>Keyboard Shortcuts</h3>
+        <p>Unlock Efficiency: Top 100 Adobe Illustrator Keyboard Shortcuts You Need to Know</p>
+        <h3>Keyboard Shortcuts</h3>
+        <h3>Master Adobe Photoshop: Top 100 Time-Saving Shortcuts You Need to Know</h3>
+        <p>Exploring the Intersection of Multimedia and Social Media.</p>
+        <p>Why should I opt for PRISM MULTIMEDIA to boost my career. Here are Top 10 Reasons.</p>
+        <p>Prism Multimedia is an enterprise run by experienced professionals with years of hands-on industry expertise in both teaching and development areas. Established in 1999 to impart training in multimedia applications….</p>
+      `
+    },
+    {
+      id: 11,
+      cat: 'PORTFOLIO',
+      title: 'Mastering the Art of Portfolio Creation in the Design Industry',
+      img: './blog-poster-11.jpg',
+      content: `
+        <h3>Keyboard Shortcuts</h3>
+        <p>Unlock Efficiency: Top 100 Adobe Illustrator Keyboard Shortcuts You Need to Know</p>
+        <h3>Keyboard Shortcuts</h3>
+        <h3>Master Adobe Photoshop: Top 100 Time-Saving Shortcuts You Need to Know</h3>
+        <p>Exploring the Intersection of Multimedia and Social Media.</p>
+        <p>Why should I opt for PRISM MULTIMEDIA to boost my career. Here are Top 10 Reasons.</p>
+        <p>Prism Multimedia is an enterprise run by experienced professionals with years of hands-on industry expertise in both teaching and development areas. Established in 1999 to impart training in multimedia applications….</p>
+      `
+    },
+    {
+      id: 12,
+      cat: 'MOTION GRAPHICS',
+      title: 'The Evolution of Motion Graphics: From Cinema to Digital Media',
+      img: './blog-poster-12.jpg',
+      content: `
+        <h3>Keyboard Shortcuts</h3>
+        <p>Unlock Efficiency: Top 100 Adobe Illustrator Keyboard Shortcuts You Need to Know</p>
+        <h3>Keyboard Shortcuts</h3>
+        <h3>Master Adobe Photoshop: Top 100 Time-Saving Shortcuts You Need to Know</h3>
+        <p>Exploring the Intersection of Multimedia and Social Media.</p>
+        <p>Why should I opt for PRISM MULTIMEDIA to boost my career. Here are Top 10 Reasons.</p>
+        <p>Prism Multimedia is an enterprise run by experienced professionals with years of hands-on industry expertise in both teaching and development areas. Established in 1999 to impart training in multimedia applications….</p>
+      `
+    }
