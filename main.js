@@ -1836,17 +1836,37 @@ function initWorksFilter() {
   });
 }
 
-function bindFormSuccess(formId, successId) {
+function bindFormSuccess(formId, successId, apiEndpoint) {
   const form = document.getElementById(formId);
   const success = document.getElementById(successId);
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
+
+    // Collect form data into JSON object
+    const formData = new FormData(form);
+    const dataObj = {};
+    formData.forEach((value, key) => {
+      dataObj[key] = value;
+    });
+
+    try {
+      if (apiEndpoint) {
+        await fetch(`http://localhost:5000/api/${apiEndpoint}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dataObj)
+        });
+      }
+    } catch (err) {
+      console.warn('API submission notice:', err);
+    }
+
     form.reset();
     if (success) {
       success.hidden = false;
@@ -1858,9 +1878,9 @@ function bindFormSuccess(formId, successId) {
 }
 
 function initFormHandlers() {
-  bindFormSuccess('corporateForm', 'corporateFormSuccess');
-  bindFormSuccess('registerForm', 'registerFormSuccess');
-  bindFormSuccess('contactForm', 'contactFormSuccess');
+  bindFormSuccess('corporateForm', 'corporateFormSuccess', 'corporate-leads');
+  bindFormSuccess('registerForm', 'registerFormSuccess', 'registrations');
+  bindFormSuccess('contactForm', 'contactFormSuccess', 'contact');
 }
 
 function initBrochurePlaceholders() {

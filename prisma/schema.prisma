@@ -1,0 +1,385 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  password_hash String
+  role_id       String
+  role          Role     @relation(fields: [role_id], references: [id])
+  status        String   @default("Active") // Active, Inactive
+  last_login    DateTime?
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+  blogs         Blog[]
+  media         Media[]
+  audit_logs    AuditLog[]
+}
+
+model Role {
+  id               String           @id @default(uuid())
+  name             String           @unique // SUPER_ADMIN, ADMIN, EDITOR, ADMISSIONS_STAFF
+  created_at       DateTime         @default(now())
+  users            User[]
+  role_permissions RolePermission[]
+}
+
+model Permission {
+  id               String           @id @default(uuid())
+  name             String           @unique
+  role_permissions RolePermission[]
+}
+
+model RolePermission {
+  role_id       String
+  permission_id String
+  role          Role       @relation(fields: [role_id], references: [id], onDelete: Cascade)
+  permission    Permission @relation(fields: [permission_id], references: [id], onDelete: Cascade)
+
+  @@id([role_id, permission_id])
+}
+
+model Course {
+  id                   String               @id @default(uuid())
+  title                String
+  slug                 String               @unique
+  short_description    String
+  long_description     String
+  duration             String
+  certification        String
+  placement_assistance String
+  online_available     Boolean              @default(true)
+  classroom_available  Boolean              @default(true)
+  hero_image           String?
+  brochure_url         String?
+  status               String               @default("Published") // Draft, Published
+  seo_title            String?
+  seo_description      String?
+  created_at           DateTime             @default(now())
+  updated_at           DateTime             @updatedAt
+
+  category_maps        CourseCategoryMap[]
+  curriculum           CourseCurriculum[]
+  tools                CourseTool[]
+  mentors              CourseMentor[]
+  careers              CourseCareer[]
+  projects             CourseProject[]
+  faqs                 Faq[]
+  registrations        StudentRegistration[]
+  enquiries            CourseEnquiry[]
+  alumni               Alumni[]
+  placements           Placement[]
+  testimonials         Testimonial[]
+}
+
+model CourseCategory {
+  id          String              @id @default(uuid())
+  name        String
+  slug        String              @unique
+  description String?
+  status      String              @default("Active")
+  courses     CourseCategoryMap[]
+}
+
+model CourseCategoryMap {
+  course_id   String
+  category_id String
+  course      Course         @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  category    CourseCategory @relation(fields: [category_id], references: [id], onDelete: Cascade)
+
+  @@id([course_id, category_id])
+}
+
+model CourseCurriculum {
+  id          String   @id @default(uuid())
+  course_id   String
+  course      Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  title       String
+  description String
+  duration    String?
+  sort_order  Int      @default(0)
+}
+
+model CourseTool {
+  id          String   @id @default(uuid())
+  course_id   String
+  course      Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  tool_name   String
+  tool_icon   String?
+  description String?
+  sort_order  Int      @default(0)
+}
+
+model CourseMentor {
+  id           String   @id @default(uuid())
+  course_id    String
+  course       Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  mentor_name  String
+  mentor_image String?
+  designation  String
+  bio          String?
+  sort_order   Int      @default(0)
+}
+
+model CourseCareer {
+  id          String   @id @default(uuid())
+  course_id   String
+  course      Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  career_name String
+  industry    String?
+  description String?
+}
+
+model CourseProject {
+  id          String   @id @default(uuid())
+  course_id   String
+  course      Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  title       String
+  description String
+  image_url   String?
+  video_url   String?
+}
+
+model Faq {
+  id         String   @id @default(uuid())
+  course_id  String?
+  course     Course?  @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  question   String
+  answer     String
+  sort_order Int      @default(0)
+  status     String   @default("Published")
+}
+
+model StudentRegistration {
+  id              String   @id @default(uuid())
+  name            String
+  father_name     String?
+  gender          String
+  education       String
+  email           String
+  phone           String
+  alternate_phone String?
+  course_id       String
+  course          Course   @relation(fields: [course_id], references: [id])
+  address1        String
+  address2        String?
+  city            String
+  state           String
+  country         String   @default("India")
+  status          String   @default("New") // New, Contacted, Follow-up, Converted, Rejected, Completed
+  admin_notes     String?
+  assigned_to     String?
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+}
+
+model CourseEnquiry {
+  id          String   @id @default(uuid())
+  name        String
+  email       String
+  phone       String
+  course_id   String?
+  course      Course?  @relation(fields: [course_id], references: [id])
+  message     String
+  status      String   @default("New") // New, Contacted, Follow-up, Converted, Closed, Rejected
+  assigned_to String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model ContactMessage {
+  id          String   @id @default(uuid())
+  name        String
+  email       String
+  mobile      String
+  message     String
+  consent     Boolean  @default(true)
+  status      String   @default("New")
+  admin_notes String?
+  assigned_to String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model CorporateLead {
+  id                String   @id @default(uuid())
+  company_name      String
+  contact_name      String
+  phone             String
+  email             String
+  program           String
+  estimated_trainees Int?
+  course_timeline   String?
+  message           String?
+  status            String   @default("New")
+  assigned_to       String?
+  admin_notes       String?
+  created_at        DateTime @default(now())
+  updated_at        DateTime @updatedAt
+}
+
+model FranchiseLead {
+  id          String   @id @default(uuid())
+  name        String
+  phone       String
+  email       String
+  company     String?
+  location    String
+  message     String?
+  status      String   @default("New")
+  assigned_to String?
+  admin_notes String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model StudentWorkCategory {
+  id            String        @id @default(uuid())
+  name          String
+  slug          String        @unique
+  student_works StudentWork[]
+}
+
+model StudentWork {
+  id           String              @id @default(uuid())
+  title        String
+  student_name String
+  category_id  String
+  category     StudentWorkCategory @relation(fields: [category_id], references: [id])
+  description  String?
+  image_url    String?
+  video_url    String?
+  featured     Boolean             @default(false)
+  status       String              @default("Published")
+  created_at   DateTime            @default(now())
+  updated_at   DateTime            @updatedAt
+}
+
+model Alumni {
+  id              String   @id @default(uuid())
+  name            String
+  photo           String?
+  course_id       String?
+  course          Course?  @relation(fields: [course_id], references: [id])
+  designation     String
+  company         String
+  graduation_year Int?
+  story           String?
+  featured        Boolean  @default(false)
+  status          String   @default("Published")
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+}
+
+model Placement {
+  id           String   @id @default(uuid())
+  student_name String
+  student_photo String?
+  course_id    String?
+  course       Course?  @relation(fields: [course_id], references: [id])
+  job_title    String
+  company      String
+  company_logo String?
+  year         Int?
+  description  String?
+  status       String   @default("Published")
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+}
+
+model Testimonial {
+  id          String   @id @default(uuid())
+  name        String
+  photo       String?
+  course_id   String?
+  course      Course?  @relation(fields: [course_id], references: [id])
+  designation String?
+  company     String?
+  testimonial String
+  rating      Int      @default(5)
+  featured    Boolean  @default(false)
+  status      String   @default("Published")
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model BlogCategory {
+  id          String   @id @default(uuid())
+  name        String
+  slug        String   @unique
+  description String?
+  blogs       Blog[]
+}
+
+model Blog {
+  id              String       @id @default(uuid())
+  title           String
+  slug            String       @unique
+  excerpt         String
+  content         String
+  featured_image  String?
+  category_id     String
+  category        BlogCategory @relation(fields: [category_id], references: [id])
+  author_id       String?
+  author          User?        @relation(fields: [author_id], references: [id])
+  tags            String?      // comma-separated
+  seo_title       String?
+  seo_description String?
+  published       Boolean      @default(true)
+  published_at    DateTime     @default(now())
+  created_at      DateTime     @default(now())
+  updated_at      DateTime     @updatedAt
+}
+
+model Media {
+  id          String   @id @default(uuid())
+  filename    String
+  url         String
+  type        String
+  mime_type   String
+  size        Int
+  alt_text    String?
+  folder      String   @default("uploads")
+  uploaded_by String?
+  uploader    User?    @relation(fields: [uploaded_by], references: [id])
+  created_at  DateTime @default(now())
+}
+
+model Setting {
+  id         String   @id @default(uuid())
+  key        String   @unique
+  value      String
+  updated_at DateTime @updatedAt
+}
+
+model SeoMetadata {
+  id             String   @id @default(uuid())
+  page           String   @unique
+  title          String
+  description    String
+  keywords       String?
+  canonical_url  String?
+  og_title       String?
+  og_description String?
+  og_image       String?
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  user_id    String?
+  user       User?    @relation(fields: [user_id], references: [id])
+  action     String
+  entity     String
+  entity_id  String?
+  ip_address String?
+  created_at DateTime @default(now())
+}
