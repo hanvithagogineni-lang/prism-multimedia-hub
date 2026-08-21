@@ -4,31 +4,30 @@ import bcrypt from 'bcryptjs';
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌱 Starting comprehensive database seed...');
+  console.log('🌱 Starting comprehensive database seed with all 12 courses and 12 articles...');
 
-  // 1. Clean existing records in correct relation order
+  // 1. Clean existing database
   await prisma.auditLog.deleteMany();
+  await prisma.setting.deleteMany();
+  await prisma.seoMetadata.deleteMany();
+  await prisma.blog.deleteMany();
+  await prisma.blogCategory.deleteMany();
+  await prisma.studentWork.deleteMany();
+  await prisma.studentWorkCategory.deleteMany();
+  await prisma.testimonial.deleteMany();
+  await prisma.placement.deleteMany();
+  await prisma.alumni.deleteMany();
   await prisma.studentRegistration.deleteMany();
   await prisma.courseEnquiry.deleteMany();
   await prisma.contactMessage.deleteMany();
   await prisma.corporateLead.deleteMany();
   await prisma.franchiseLead.deleteMany();
-  await prisma.studentWork.deleteMany();
-  await prisma.studentWorkCategory.deleteMany();
-  await prisma.alumni.deleteMany();
-  await prisma.placement.deleteMany();
-  await prisma.testimonial.deleteMany();
-  await prisma.blog.deleteMany();
-  await prisma.blogCategory.deleteMany();
-  await prisma.media.deleteMany();
-  await prisma.setting.deleteMany();
-  await prisma.seoMetadata.deleteMany();
+  await prisma.fAQ.deleteMany();
   await prisma.courseProject.deleteMany();
   await prisma.courseCareer.deleteMany();
   await prisma.courseMentor.deleteMany();
   await prisma.courseTool.deleteMany();
   await prisma.courseCurriculum.deleteMany();
-  await prisma.fAQ.deleteMany();
   await prisma.courseCategoryMap.deleteMany();
   await prisma.course.deleteMany();
   await prisma.courseCategory.deleteMany();
@@ -38,46 +37,63 @@ async function main() {
   await prisma.role.deleteMany();
 
   // 2. Seed Roles & Permissions
-  const superAdminRole = await prisma.role.create({ data: { name: 'SUPER_ADMIN' } });
-  const adminRole = await prisma.role.create({ data: { name: 'ADMIN' } });
-  const editorRole = await prisma.role.create({ data: { name: 'EDITOR' } });
-  const admissionsRole = await prisma.role.create({ data: { name: 'ADMISSIONS_STAFF' } });
+  const roleSuperAdmin = await prisma.role.create({
+    data: { name: 'SUPER_ADMIN' }
+  });
+  const roleAdmin = await prisma.role.create({
+    data: { name: 'ADMIN' }
+  });
+  const roleEditor = await prisma.role.create({
+    data: { name: 'EDITOR' }
+  });
+  const roleCounselor = await prisma.role.create({
+    data: { name: 'COUNSELOR' }
+  });
 
-  const permissions = [
-    'ALL_ACCESS', 'MANAGE_COURSES', 'MANAGE_LEADS', 'MANAGE_BLOGS',
-    'MANAGE_STUDENTS', 'MANAGE_SETTINGS', 'MANAGE_USERS', 'EXPORT_DATA'
+  const permissionsList = [
+    'courses:read', 'courses:create', 'courses:update', 'courses:delete',
+    'registrations:read', 'registrations:update', 'registrations:export',
+    'leads:read', 'leads:update', 'leads:export',
+    'blogs:read', 'blogs:create', 'blogs:update', 'blogs:delete',
+    'media:read', 'media:upload', 'media:delete',
+    'settings:read', 'settings:update',
+    'users:read', 'users:manage'
   ];
 
-  for (const p of permissions) {
-    const perm = await prisma.permission.create({ data: { name: p } });
+  for (const perm of permissionsList) {
+    const p = await prisma.permission.create({
+      data: { name: perm }
+    });
     await prisma.rolePermission.create({
-      data: { role_id: superAdminRole.id, permission_id: perm.id }
+      data: { role_id: roleSuperAdmin.id, permission_id: p.id }
     });
   }
 
-  // 3. Seed Super Admin User
-  const passwordHash = await bcrypt.hash('Admin@123456', 10);
+  // 3. Seed Default Super Admin User
+  const salt = await bcrypt.genSalt(10);
+  const passwordHash = await bcrypt.hash('Admin@123456', salt);
+
   const adminUser = await prisma.user.create({
     data: {
       name: 'Super Admin',
       email: 'admin@prismmultimedia.com',
       password_hash: passwordHash,
-      role_id: superAdminRole.id,
+      role_id: roleSuperAdmin.id,
       status: 'ACTIVE',
     }
   });
 
   // 4. Seed Course Categories
-  const catDesign = await prisma.courseCategory.create({ data: { name: 'Design', slug: 'design', description: 'Visual & Graphic Design' } });
-  const catUIUX = await prisma.courseCategory.create({ data: { name: 'UI/UX', slug: 'ui-ux', description: 'User Interface and User Experience' } });
-  const catAnimation = await prisma.courseCategory.create({ data: { name: 'Animation', slug: 'animation', description: '2D & 3D Animation' } });
-  const catVFX = await prisma.courseCategory.create({ data: { name: 'VFX', slug: 'vfx', description: 'Visual Effects & Compositing' } });
-  const catVideo = await prisma.courseCategory.create({ data: { name: 'Video', slug: 'video', description: 'Video Editing & Motion Design' } });
-  const catMarketing = await prisma.courseCategory.create({ data: { name: 'Digital Marketing', slug: 'digital-marketing', description: 'Digital Marketing & Growth' } });
-  const catEDP = await prisma.courseCategory.create({ data: { name: 'Entrepreneurship', slug: 'entrepreneurship', description: 'Business & Startup Incubation' } });
-  const catDiploma = await prisma.courseCategory.create({ data: { name: 'Diploma', slug: 'diploma', description: 'Full Professional Diploma Programs' } });
+  const catDesign = await prisma.courseCategory.create({ data: { name: 'Design', slug: 'design' } });
+  const catUIUX = await prisma.courseCategory.create({ data: { name: 'UI/UX', slug: 'ui-ux' } });
+  const catAnimation = await prisma.courseCategory.create({ data: { name: 'Animation', slug: 'animation' } });
+  const catVFX = await prisma.courseCategory.create({ data: { name: 'VFX', slug: 'vfx' } });
+  const catVideo = await prisma.courseCategory.create({ data: { name: 'Video Editing', slug: 'video' } });
+  const catMarketing = await prisma.courseCategory.create({ data: { name: 'Digital Marketing', slug: 'digital-marketing' } });
+  const catEDP = await prisma.courseCategory.create({ data: { name: 'Entrepreneurship', slug: 'entrepreneurship' } });
+  const catDiploma = await prisma.courseCategory.create({ data: { name: 'Diploma Programs', slug: 'diploma' } });
 
-  // 5. Seed Initial Courses
+  // 5. Seed 12 Complete Courses
   const coursesData = [
     {
       title: 'Post Graduate Diploma in Multimedia (PGDIM)',
@@ -90,8 +106,8 @@ async function main() {
       online_available: true,
       classroom_available: true,
       hero_image: './program-card-pgdim.jpg',
-      categories: [catDiploma.id, catDesign.id, catAnimation.id, catVFX.id],
-      tools: ['Photoshop', 'Illustrator', 'Adobe InDesign', 'HTML5', 'CSS3', 'JavaScript', 'Bootstrap', 'jQuery', 'Angular', 'Adobe Animate', 'Premiere Pro', 'After Effects', 'Media Encoder', 'Audition', 'Autodesk Maya', 'Blender'],
+      categories: [catDiploma.id, catDesign.id, catUIUX.id, catAnimation.id, catVFX.id, catVideo.id],
+      tools: ['Photoshop', 'Illustrator', 'Adobe InDesign', 'CorelDRAW', 'HTML5 / CSS3', 'JavaScript / Angular', 'Adobe Animate', 'Premiere Pro', 'After Effects', 'Audition', 'Autodesk Maya', 'Blender'],
       curriculum: [
         { title: 'Module 1: Visual Design & Brand Identity', desc: 'Master layout composition, vector graphics, print typography, and high-fidelity branding.', duration: '3 Months' },
         { title: 'Module 2: UI/UX & Interactive Web Technologies', desc: 'Front-end development with HTML, CSS, JavaScript, responsive frameworks, and prototyping.', duration: '3 Months' },
@@ -117,17 +133,17 @@ async function main() {
       online_available: true,
       classroom_available: true,
       hero_image: './program-card-gdim.jpg',
-      categories: [catDiploma.id, catDesign.id, catVideo.id],
-      tools: ['Photoshop', 'Illustrator', 'Adobe InDesign', 'HTML5', 'CSS3', 'JavaScript', 'Premiere Pro', 'After Effects'],
+      categories: [catDiploma.id, catDesign.id, catUIUX.id, catVideo.id],
+      tools: ['Photoshop', 'Illustrator', 'Adobe InDesign', 'HTML5 / CSS3', 'JavaScript', 'Premiere Pro', 'After Effects'],
       curriculum: [
-        { title: 'Commercial Graphic Design', desc: 'Print media, brand guidelines, typography, and advertising design.', duration: '3 Months' },
-        { title: 'UI Design & Front-End Basics', desc: 'Web layouts, responsive design, HTML, CSS, and basic JavaScript.', duration: '3 Months' },
-        { title: 'Video Editing & Motion Graphics', desc: 'Timeline editing, audio sweetening, title motion, and showreel creation.', duration: '4 Months' }
+        { title: 'Graphic & Print Production Design', desc: 'Vector drawing, corporate visual identity, and print layout standards.', duration: '3 Months' },
+        { title: 'UI Front-End & Responsive Web Design', desc: 'Modern responsive web development using HTML5, CSS3, Flexbox, and JavaScript.', duration: '3 Months' },
+        { title: 'Audio/Video Post-Production & Motion Graphics', desc: 'Timeline editing, multi-track audio cleanup, kinetic motion typography, and color grading.', duration: '4 Months' }
       ],
       careers: [
-        { name: 'Creative Designer', industry: 'Advertising & Marketing Agencies' },
-        { name: 'Motion Graphic Artist', industry: 'Broadcasting & YouTube Media' },
-        { name: 'Web UI Designer', industry: 'IT & Software Firms' }
+        { name: 'Multimedia Developer', industry: 'Digital Agencies' },
+        { name: 'Graphic & UI Designer', industry: 'Software Companies' },
+        { name: 'Video Content Creator', industry: 'Social Media & Marketing' }
       ]
     },
     {
@@ -142,11 +158,11 @@ async function main() {
       classroom_available: true,
       hero_image: './program-card-graphic.jpg',
       categories: [catDesign.id],
-      tools: ['Photoshop', 'Illustrator', 'Adobe InDesign', 'Adobe Acrobat', 'CorelDRAW'],
+      tools: ['Photoshop', 'Illustrator', 'Adobe InDesign', 'CorelDRAW'],
       curriculum: [
-        { title: 'Design Principles & Color Psychology', desc: 'Understanding color harmonies, typography hierarchy, and visual balance.', duration: '2 Weeks' },
-        { title: 'Raster Graphics & Photo Manipulation', desc: 'Mastering Adobe Photoshop tools, layers, masking, and commercial retouching.', duration: '4 Weeks' },
-        { title: 'Vector Illustration & Logo Crafting', desc: 'Adobe Illustrator pathfinding, iconography, branding suites, and merchandise.', duration: '4 Weeks' },
+        { title: 'Design Fundamentals & Color Psychology', desc: 'Color palettes, layout hierarchy, grid systems, and typography rules.', duration: '2 Weeks' },
+        { title: 'Raster Manipulation in Adobe Photoshop', desc: 'Layer masking, photo composite retouching, digital painting, and banner designs.', duration: '4 Weeks' },
+        { title: 'Vector Illustration in Adobe Illustrator', desc: 'Pen tool mastery, logo design, iconography, and commercial packaging.', duration: '4 Weeks' },
         { title: 'Editorial Publishing & Print Prep', desc: 'InDesign multi-page book layouts, magazine spreads, pre-press calibration.', duration: '2 Weeks' }
       ],
       careers: [
@@ -250,9 +266,9 @@ async function main() {
         { title: 'Analytics, Email Marketing & Strategy', desc: 'GA4 data interpretation, ROI metrics, email automation funnels.', duration: '3 Weeks' }
       ],
       careers: [
-        { name: 'Digital Marketing Specialist', industry: 'Corporate & Brands' },
-        { name: 'SEO & Performance Lead', industry: 'E-commerce & Agencies' },
-        { name: 'Social Media Strategist', industry: 'Media & Influencer Brands' }
+        { name: 'Digital Marketing Specialist', industry: 'Tech & E-commerce Brands' },
+        { name: 'SEO & Performance Lead', industry: 'Marketing Agencies' },
+        { name: 'Social Media Campaign Manager', industry: 'Media Houses & Startups' }
       ]
     },
     {
@@ -267,17 +283,17 @@ async function main() {
       classroom_available: true,
       hero_image: './program-card-av.jpg',
       categories: [catVideo.id],
-      tools: ['Premiere Pro', 'Adobe Audition', 'DaVinci Resolve', 'Media Encoder'],
+      tools: ['Adobe Premiere Pro', 'Adobe Audition', 'DaVinci Resolve', 'Adobe Media Encoder', 'Photoshop'],
       curriculum: [
-        { title: 'Non-Linear Editing Fundamentals', desc: 'Timeline management, cutting pacing, shot selections, and transitions.', duration: '4 Weeks' },
-        { title: 'Audio Restoration & Sound Design', desc: 'Noise reduction, equalization, ambient Foley, and master audio mixing.', duration: '4 Weeks' },
-        { title: 'Color Correction & Color Grading', desc: 'Lumetri Color scopes, LUTs, mood lighting, and HDR export.', duration: '4 Weeks' },
-        { title: 'Multi-Cam Editing & Showreel Packaging', desc: 'Concert/podcast multi-cam workflow, high-res delivery, and showreel.', duration: '4 Weeks' }
+        { title: 'Non-Linear Editing & Assembly in Premiere', desc: 'Project setup, sequence pacing, narrative cutting, and shortcut workflow.', duration: '4 Weeks' },
+        { title: 'Audio Mixing, Mastering & Restoration', desc: 'Noise reduction, equalization, dynamic compression, and sound FX layering.', duration: '3 Weeks' },
+        { title: 'Color Grading & Lumetri Scopes', desc: 'Primary & secondary color correction, LUTs, and broadcast skin tones.', duration: '5 Weeks' },
+        { title: 'Commercial Reels & Final Delivery', desc: 'Export presets for OTT platforms, YouTube 4K, and cinema reels.', duration: '4 Weeks' }
       ],
       careers: [
-        { name: 'Professional Video Editor', industry: 'Film, TV & YouTube Studios' },
-        { name: 'Sound Designer & Podcast Mixer', industry: 'Audio Production & Radio' },
-        { name: 'Colorist & Finishing Artist', industry: 'Post-Production Houses' }
+        { name: 'Video Editor & Colorist', industry: 'Film, TV & Web Media' },
+        { name: 'Sound Designer & Audio Engineer', industry: 'Music & Podcasting' },
+        { name: 'Content Post-Producer', industry: 'Ad Agencies & YouTube Creators' }
       ]
     },
     {
@@ -292,17 +308,17 @@ async function main() {
       classroom_available: true,
       hero_image: './program-card-3d.jpg',
       categories: [catAnimation.id],
-      tools: ['Autodesk Maya', 'Blender', 'Substance 3D Painter', 'Arnold Renderer'],
+      tools: ['Autodesk Maya', 'Blender', 'Substance 3D Painter', 'ZBrush', 'Arnold Renderer'],
       curriculum: [
-        { title: '3D Asset Modeling & Topology', desc: 'Hard-surface props, environments, and organic character modeling.', duration: '6 Weeks' },
-        { title: 'PBR Texturing & UV Unwrapping', desc: 'Substance Painter texturing, UV layout optimization, and material creation.', duration: '4 Weeks' },
-        { title: 'Character Rigging & Skinning', desc: 'FK/IK bone controls, facial blendshapes, and weight painting.', duration: '6 Weeks' },
-        { title: '3D Animation, Lighting & Arnold Rendering', desc: 'Walk cycles, physics interactions, three-point lighting, and batch rendering.', duration: '8 Weeks' }
+        { title: '3D Hard Surface & Organic Modeling', desc: 'Polygon topology, edge loops, organic sculpting, and low/high poly modeling.', duration: '6 Weeks' },
+        { title: 'UV Unwrapping & PBR Texturing', desc: 'Substance Painter maps (diffuse, roughness, metallic, normal), shader creation.', duration: '4 Weeks' },
+        { title: 'Character Rigging & Skinning', desc: 'Joint hierarchies, IK/FK solvers, blendshapes, and skin weights.', duration: '6 Weeks' },
+        { title: '3D Keyframe Animation & Lighting', desc: 'Body mechanics, walk/run cycles, Arnold studio lighting, and rendering.', duration: '8 Weeks' }
       ],
       careers: [
-        { name: '3D Character Animator', industry: 'Gaming & Animation Studios' },
-        { name: '3D Environment Artist', industry: 'Architectural & Game Design' },
-        { name: 'Lighting & Rendering Artist', industry: 'Visual Effects Studios' }
+        { name: '3D Character Animator', industry: 'Feature Film & Gaming' },
+        { name: '3D Asset Modeler & Texture Artist', industry: 'VFX & AR/VR Studios' },
+        { name: 'Lighting & Rendering Technical Director', industry: 'Animation Houses' }
       ]
     },
     {
@@ -317,17 +333,17 @@ async function main() {
       classroom_available: true,
       hero_image: './program-card-vfx.jpg',
       categories: [catVFX.id],
-      tools: ['After Effects', 'Foundry Nuke', 'Mocha Pro', 'Photoshop', 'Premiere Pro'],
+      tools: ['Adobe After Effects', 'Foundry Nuke', 'Mocha Pro', 'Silhouette FX', 'Premiere Pro'],
       curriculum: [
-        { title: 'Rotoscoping & Paint / Clean Plate', desc: 'Silhouette painting, wire removal, and background reconstruction.', duration: '6 Weeks' },
-        { title: 'Green Screen Keying & Spill Suppression', desc: 'Primatte, Keylight, edge refining, and core matte management.', duration: '6 Weeks' },
-        { title: '3D Matchmoving & Planar Tracking', desc: 'Mocha Pro tracking, camera solving, and CGI asset integration.', duration: '6 Weeks' },
-        { title: 'Final Compositing & Particle FX', desc: 'Atmospheric depth, color matching, muzzle flashes, and showreel.', duration: '6 Weeks' }
+        { title: 'Rotoscoping & Paint / Clean Plating', desc: 'Planar tracking in Mocha, articulate roto splines, wire removal, and matte prep.', duration: '6 Weeks' },
+        { title: 'Chroma Keying & Green Screen Extraction', desc: 'Primatte, Keylight, edge spill suppression, and alpha edge blending.', duration: '5 Weeks' },
+        { title: '3D Camera Tracking & Matchmoving', desc: 'Camera solving, point cloud tracking, and CGI asset spatial alignment.', duration: '5 Weeks' },
+        { title: 'Node-Based Compositing & Particle FX', desc: 'Nuke channel management, multi-pass EXR compositing, fire, smoke, and explosions.', duration: '8 Weeks' }
       ],
       careers: [
-        { name: 'VFX Compositor', industry: 'Feature Film & OTT Studios' },
-        { name: 'Roto & Paint Artist', industry: 'VFX Production Houses' },
-        { name: 'Matchmove & Tracking Specialist', industry: 'Commercial Advertising' }
+        { name: 'VFX Compositor', industry: 'International VFX Studios' },
+        { name: 'Roto & Prep Artist', industry: 'Feature Film Post-Houses' },
+        { name: 'Matchmove & Tracking Specialist', industry: 'Commercial Studios' }
       ]
     },
     {
@@ -341,18 +357,18 @@ async function main() {
       online_available: true,
       classroom_available: true,
       hero_image: './program-card-motion.jpg',
-      categories: [catVideo.id, catDesign.id],
-      tools: ['After Effects', 'Premiere Pro', 'Illustrator', 'Cinema 4D Lite', 'Media Encoder'],
+      categories: [catDesign.id, catVideo.id, catAnimation.id],
+      tools: ['Adobe After Effects', 'Premiere Pro', 'Adobe Illustrator', 'Photoshop', 'Cinema 4D Lite'],
       curriculum: [
-        { title: 'Motion Fundamentals & Easing Curves', desc: 'Speed graphs, value curves, rhythm, and kinetic motion physics.', duration: '4 Weeks' },
-        { title: 'Kinetic Typography & Title Sequences', desc: 'Text animators, 3D space typography, and title intro design.', duration: '4 Weeks' },
-        { title: 'Vector Motion & Explainer Videos', desc: 'Importing vector artwork, shape layers, and character rigs.', duration: '4 Weeks' },
-        { title: 'Commercial Broadcast Graphics & Reels', desc: 'Lower thirds, channel branding, product promo packaging.', duration: '4 Weeks' }
+        { title: 'Design for Motion & Vector Assets', desc: 'Preparing Illustrator vector artwork and layer hierarchies for animation.', duration: '3 Weeks' },
+        { title: 'Keyframing & Graph Editor Dynamics', desc: 'Easing curves, speed graphs, spatial interpolation, and secondary motion.', duration: '4 Weeks' },
+        { title: 'Kinetic Typography & Broadcast Branding', desc: 'Animated text reveals, lower thirds, title openers, and channel ident bumpers.', duration: '5 Weeks' },
+        { title: '3D Space & Commercial Motion Reels', desc: 'Camera layers, 3D depth of field, particle presets, and client sizzle reels.', duration: '4 Weeks' }
       ],
       careers: [
-        { name: 'Motion Graphics Artist', industry: 'Design Agencies & TV Channels' },
-        { name: 'Explainer Video Animator', industry: 'Tech Startups & Marketing' },
-        { name: 'UI Motion Designer', industry: 'Product & Mobile App Studios' }
+        { name: 'Motion Graphic Designer', industry: 'Broadcast TV & Streaming' },
+        { name: 'Explainer Video Specialist', industry: 'Tech Startups & Agencies' },
+        { name: 'Social Media Motion Artist', industry: 'Digital Brand Studios' }
       ]
     },
     {
@@ -366,18 +382,18 @@ async function main() {
       online_available: true,
       classroom_available: true,
       hero_image: './program-card-edp.jpg',
-      categories: [catEDP.id, catDiploma.id],
-      tools: ['Business Model Canvas', 'Notion', 'Figma', 'Google Workspace', 'QuickBooks'],
+      categories: [catEDP.id],
+      tools: ['Business Model Canvas', 'Notion', 'Figma', 'Slack', 'QuickBooks', 'Google Workspace'],
       curriculum: [
-        { title: 'Creative Business Foundations & Niche Selection', desc: 'Identifying market opportunities, positioning, and service offerings.', duration: '6 Weeks' },
-        { title: 'Marketing, Lead Generation & Sales Funnels', desc: 'Inbound marketing, proposal drafting, and client closing techniques.', duration: '6 Weeks' },
-        { title: 'Financial Planning, Contracts & Legalities', desc: 'Pricing models, project contracts, invoices, and cash flow management.', duration: '6 Weeks' },
-        { title: 'Studio Operations, Team Scaling & Incubation', desc: 'Hiring freelancers, project delivery systems, and live business launch.', duration: '6 Weeks' }
+        { title: 'Creative Business Strategy & Market Fit', desc: 'Niche identification, market research, and value proposition design.', duration: '4 Weeks' },
+        { title: 'Client Acquisition & Pitch Deck Creation', desc: 'Lead generation, sales funnels, portfolio presentation, and RFP pitching.', duration: '6 Weeks' },
+        { title: 'Pricing Models, Contracts & Financials', desc: 'Value-based pricing, retainer agreements, client service contracts, and cash flow.', duration: '6 Weeks' },
+        { title: 'Studio Operations & Team Scaling', desc: 'Hiring freelancers, project management pipelines, quality assurance, and growth.', duration: '8 Weeks' }
       ],
       careers: [
-        { name: 'Creative Agency Founder', industry: 'Self-Employed / Studio Owner' },
-        { name: 'Independent High-Ticket Freelancer', industry: 'Global Remote Consulting' },
-        { name: 'Creative Studio Director', industry: 'Production & Digital Media' }
+        { name: 'Creative Agency Founder', industry: 'Design & Multimedia Studios' },
+        { name: 'Independent Creative Director', industry: 'Freelance & Consultancies' },
+        { name: 'Studio Operations Manager', industry: 'Media & Production Houses' }
       ]
     }
   ];
@@ -395,26 +411,24 @@ async function main() {
         online_available: c.online_available,
         classroom_available: c.classroom_available,
         hero_image: c.hero_image,
-        seo_title: `${c.title} Training in Hyderabad | Prism Multimedia`,
-        seo_description: `Learn ${c.title} with 100% placement support at Prism Multimedia, Ameerpet, Hyderabad.`,
+        status: 'PUBLISHED',
+        seo_title: `${c.title} Training Course | Prism Multimedia`,
+        seo_description: c.short_description,
       }
     });
 
-    // Link categories
     for (const catId of c.categories) {
       await prisma.courseCategoryMap.create({
         data: { course_id: course.id, category_id: catId }
       });
     }
 
-    // Tools
     for (let i = 0; i < c.tools.length; i++) {
       await prisma.courseTool.create({
-        data: { course_id: course.id, tool_name: c.tools[i], sort_order: i }
+        data: { course_id: course.id, tool_name: c.tools[i], sort_order: i + 1 }
       });
     }
 
-    // Curriculum
     for (let i = 0; i < c.curriculum.length; i++) {
       await prisma.courseCurriculum.create({
         data: {
@@ -422,68 +436,58 @@ async function main() {
           title: c.curriculum[i].title,
           description: c.curriculum[i].desc,
           duration: c.curriculum[i].duration,
-          sort_order: i
+          sort_order: i + 1
         }
       });
     }
 
-    // Careers
-    for (const car of c.careers) {
+    for (const career of c.careers) {
       await prisma.courseCareer.create({
-        data: {
-          course_id: course.id,
-          career_name: car.name,
-          industry: car.industry,
-        }
+        data: { course_id: course.id, career_name: career.name, industry: career.industry }
       });
     }
 
-    // Common Course FAQs
     await prisma.fAQ.createMany({
       data: [
-        { course_id: course.id, question: `What are the prerequisites for the ${c.title} course?`, answer: 'No prior technical background is required. We start from basic foundations and advance to studio-grade mastery.' },
-        { course_id: course.id, question: `Is placement assistance provided after completing ${c.title}?`, answer: 'Yes, Prism Multimedia provides 100% placement assistance, resume preparation, mock interviews, and showreel guidance.' }
+        { course_id: course.id, question: `What is the eligibility for ${c.title}?`, answer: 'Any graduate or undergraduate passionate about creative design and multimedia is eligible to enroll. No prior coding or design experience is required as we start from fundamental principles.', sort_order: 1 },
+        { course_id: course.id, question: `Does Prism provide placement support for ${c.title}?`, answer: 'Yes! We provide 100% placement support with dedicated resume preparation, portfolio showreel curation, and interview referrals to our network of 500+ top hiring studios and tech enterprises.', sort_order: 2 },
+        { course_id: course.id, question: `Are both classroom and online batches available?`, answer: 'Yes, we offer flexible learning modes including in-person lab training at our Ameerpet Hyderabad campus as well as live instructor-led interactive online batches.', sort_order: 3 }
       ]
     });
   }
 
-  // 6. Seed Institute FAQs
-  await prisma.fAQ.createMany({
-    data: [
-      { question: 'What courses does Prism Multimedia offer?', answer: 'Prism Multimedia offers comprehensive training in Graphic Design, UI/UX Design, 2D Animation, 3D Animation, VFX, Audio & Video Editing, Digital Marketing, EDP, and Flagship PGDIM.', sort_order: 1 },
-      { question: 'Why should I choose Prism Multimedia for multimedia training?', answer: 'Established in 1999 with 24+ years of excellence, Prism Multimedia offers certified expert mentors, studio workflow training, 10,000+ successful alumni, and 100% placement support.', sort_order: 2 },
-      { question: 'Are the courses at Prism Multimedia suitable for beginners?', answer: 'Yes! All courses are structured from absolute fundamentals to advanced production pipelines suitable for students, graduates, and working professionals.', sort_order: 3 },
-      { question: 'How can I enroll in a course at Prism Multimedia?', answer: 'You can submit the online registration form on our website or visit our Ameerpet campus directly for in-person counseling.', sort_order: 4 },
-      { question: 'Can I find job opportunities through Prism Multimedia?', answer: 'Yes, our dedicated placement cell actively connects students with hiring partners across creative agencies, animation studios, and IT firms.', sort_order: 5 }
-    ]
-  });
+  // 6. Seed Mentors
+  const pGDIMCourse = await prisma.course.findFirst({ where: { slug: 'pgdim' } });
+  if (pGDIMCourse) {
+    await prisma.courseMentor.createMany({
+      data: [
+        { course_id: pGDIMCourse.id, mentor_name: 'M. Srinivas Rao', designation: 'Founder & Senior Creative Mentor', bio: '24+ years in multimedia education and creative industry training.', sort_order: 1 },
+        { course_id: pGDIMCourse.id, mentor_name: 'Anjee Yarlagadda', designation: 'Managing Director & Design Mentor', bio: '15+ years in Training & Development, design systems, and corporate training.', sort_order: 2 }
+      ]
+    });
+  }
 
   // 7. Seed Alumni
-  const pGDIMCourse = await prisma.course.findFirst({ where: { slug: 'pgdim' } });
-  const graphicCourse = await prisma.course.findFirst({ where: { slug: 'graphic-design' } });
-  const uiuxCourse = await prisma.course.findFirst({ where: { slug: 'ui-design-and-development' } });
-  const vfxCourse = await prisma.course.findFirst({ where: { slug: 'vfx' } });
-
-  const alumniList = [
-    { name: 'Bolle Madhu', designation: 'Graphic Designer', company: 'Sitara Foods', photo: './alumni-bolle-madhu.jpg', course_id: graphicCourse?.id || pGDIMCourse!.id },
-    { name: 'Venkateswara Rao', designation: 'Graphic Designer', company: 'Chota News', photo: './alumni-venkateswara-rao.jpg', course_id: graphicCourse?.id || pGDIMCourse!.id },
-    { name: 'Maggidi Uday Kiran', designation: 'Social Media Executive', company: 'BigTV', photo: './alumni-maggidi-uday.jpg', course_id: graphicCourse?.id || pGDIMCourse!.id },
-    { name: 'Nikhilesh Mishra', designation: 'Social Media Executive', company: 'CyberSRC Consultancy', photo: './alumni-nikhilesh-mishra.jpg', course_id: graphicCourse?.id || pGDIMCourse!.id },
-    { name: 'Yarlagadda Haritha', designation: 'UI UX Designer', company: 'Innomagine Consulting', photo: './alumni-yarlagadda-haritha.jpg', course_id: uiuxCourse?.id || pGDIMCourse!.id },
-    { name: 'Byrla Anandakumar', designation: 'Software Engineer', company: 'World Health Organization (WHO)', photo: './alumni-byrla-anandakumar.jpg', course_id: pGDIMCourse!.id },
-    { name: 'Bokkena Sriguru Sairam', designation: '2D & 3D – VFX Supervisor', company: 'Greengold Animation', photo: './alumni-bokkena-sairam.jpg', course_id: vfxCourse?.id || pGDIMCourse!.id },
-    { name: 'Srinaiah Jinkala', designation: 'Managing Director', company: 'Spruko Technologies', photo: './alumni-srinaiah-jinkala.jpg', course_id: pGDIMCourse!.id }
+  const alumniData = [
+    { name: 'Bolle Madhu', designation: 'Graphic Designer', company: 'Sitara Foods', photo: './alumni-bolle-madhu.jpg' },
+    { name: 'Venkateswara Rao', designation: 'Graphic Designer', company: 'Chota News', photo: './alumni-venkateswara-rao.jpg' },
+    { name: 'Maggidi Uday Kiran', designation: 'Social Media Executive', company: 'BigTV', photo: './alumni-maggidi-uday.jpg' },
+    { name: 'Nikhilesh Mishra', designation: 'Social Media Executive', company: 'CyberSRC Consultancy', photo: './alumni-nikhilesh-mishra.jpg' },
+    { name: 'Yarlagadda Haritha', designation: 'UI UX Designer', company: 'Innomagine Consulting', photo: './alumni-yarlagadda-haritha.jpg' },
+    { name: 'Byrla Anandakumar', designation: 'Software Engineer', company: 'World Health Organization (WHO)', photo: './alumni-byrla-anandakumar.jpg' },
+    { name: 'Bokkena Sriguru Sairam', designation: '2D & 3D – VFX Supervisor', company: 'Greengold Animation', photo: './alumni-bokkena-sairam.jpg' },
+    { name: 'Srinaiah Jinkala', designation: 'Managing Director', company: 'Spruko Technologies', photo: './alumni-srinaiah-jinkala.jpg' },
   ];
 
-  for (const a of alumniList) {
+  for (const a of alumniData) {
     await prisma.alumni.create({
       data: {
         name: a.name,
         designation: a.designation,
         company: a.company,
         photo: a.photo,
-        course_id: a.course_id,
-        featured: true,
+        course_id: pGDIMCourse!.id,
+        status: 'ACTIVE',
       }
     });
   }
@@ -565,12 +569,12 @@ async function main() {
     ]
   });
 
-  // 11. Seed Blog Categories and Blogs
+  // 11. Seed Blog Categories and ALL 12 Complete Blogs
   const bCatShortcuts = await prisma.blogCategory.create({ data: { name: 'Keyboard Shortcuts', slug: 'keyboard-shortcuts' } });
   const bCatCareer = await prisma.blogCategory.create({ data: { name: 'Career & Industry', slug: 'career' } });
   const bCatDesign = await prisma.blogCategory.create({ data: { name: 'Design Insights', slug: 'design-insights' } });
 
-  const blogsList = [
+  const all12Blogs = [
     {
       title: 'Master Adobe InDesign: Top 100 Essential Keyboard Shortcuts',
       slug: 'master-adobe-indesign-top-100-essential-keyboard-shortcuts',
@@ -618,10 +622,58 @@ async function main() {
       excerpt: 'How micro-interactions, smooth easing curves, and dynamic motion graphics elevate digital product usability.',
       content: 'Motion graphics bring life to static app interfaces, giving users immediate visual feedback, spatial orientation, and delighted engagement.',
       image: './blog-poster-6.jpg'
+    },
+    {
+      title: 'The Growing Demand for UI/UX Designers in 2026 and Beyond',
+      slug: 'the-growing-demand-for-ui-ux-designers-in-2026-and-beyond',
+      category_id: bCatCareer.id,
+      excerpt: 'Why user experience and user interface design have become mission-critical roles in tech companies worldwide.',
+      content: 'In the digital era, product usability dictates commercial success. Companies no longer compete purely on technology features; they compete on user experience.',
+      image: './blog-poster-4.jpg'
+    },
+    {
+      title: '10 Crucial Principles of Graphic Design Every Beginner Must Know',
+      slug: '10-crucial-principles-of-graphic-design-every-beginner-must-know',
+      category_id: bCatDesign.id,
+      excerpt: 'Master hierarchy, balance, contrast, proximity, and whitespace to craft professional, visually compelling designs.',
+      content: 'Understanding foundational design principles separates amateur layouts from professional visual communication that moves audiences.',
+      image: './blog-poster-5.jpg'
+    },
+    {
+      title: 'Why 3D Animation and VFX are Dominating the Entertainment Industry',
+      slug: 'why-3d-animation-and-vfx-are-dominating-the-entertainment-industry',
+      category_id: bCatCareer.id,
+      excerpt: 'From blockbuster cinema to OTT series and next-gen gaming, explore the exponential rise of 3D pipelines.',
+      content: 'With expanding OTT platforms, virtual production stages, and AAA gaming titles, the demand for skilled 3D modelers and VFX compositors is at an all-time peak.',
+      image: './blog-poster-1.jpg'
+    },
+    {
+      title: 'Video Editing Masterclass: Essential Techniques for High-Impact Storytelling',
+      slug: 'video-editing-masterclass-essential-techniques-for-high-impact-storytelling',
+      category_id: bCatDesign.id,
+      excerpt: 'Learn the psychological power of pacing, sound design, rhythm cutting, and color grading in modern film editing.',
+      content: 'Great video editing is invisible. It guides the viewer emotionally through seamless cuts, auditory tension, and color harmony.',
+      image: './blog-poster-2.jpg'
+    },
+    {
+      title: 'From Fresher to Professional: How to Build an Irresistible Design Portfolio',
+      slug: 'from-fresher-to-professional-how-to-build-an-irresistible-design-portfolio',
+      category_id: bCatCareer.id,
+      excerpt: 'Step-by-step strategies for creating Behance case studies, showreels, and UI prototypes that land top studio jobs.',
+      content: 'Your portfolio is your creative resume. Recruiters spend under 60 seconds reviewing portfolios—learn how to showcase problem-solving and craft immediately.',
+      image: './blog-poster-3.jpg'
+    },
+    {
+      title: 'The Entrepreneurial Designer: Launching and Scaling Your Own Agency',
+      slug: 'the-entrepreneurial-designer-launching-and-scaling-your-own-agency',
+      category_id: bCatCareer.id,
+      excerpt: 'How creative professionals can transition from freelancing to building profitable studios and creative teams.',
+      content: 'Discover how to price projects with value-based billing, acquire high-paying retainer clients, and establish streamlined production workflows.',
+      image: './blog-poster-6.jpg'
     }
   ];
 
-  for (const b of blogsList) {
+  for (const b of all12Blogs) {
     await prisma.blog.create({
       data: {
         title: b.title,
@@ -678,7 +730,7 @@ async function main() {
     await prisma.seoMetadata.create({ data: seo });
   }
 
-  console.log('✅ Database seeded successfully with 12 courses, alumni, reviews, settings, and superadmin!');
+  console.log('✅ Database seeded successfully with all 12 courses and 12 articles!');
 }
 
 main()
