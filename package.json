@@ -1,5 +1,5 @@
 {
-  "name": "spark-multimedia-hub",
+  "name": "prism-multimedia-hub",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -7,6 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "server": "tsx backend/src/server.ts",
+    "seed": "tsx prisma/seed.ts",
+    "test:api": "tsx backend/test-endpoints.ts",
     "deploy": "vite build && npx --yes gh-pages@6 -d dist -b gh-pages"
   },
   "dependencies": {
