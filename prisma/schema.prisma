@@ -8,64 +8,87 @@ generator client {
 }
 
 model User {
-  id            String   @id @default(uuid())
+  id            Int            @id @default(autoincrement())
   name          String
-  email         String   @unique
+  email         String         @unique
   password_hash String
-  role_id       String
-  role          Role     @relation(fields: [role_id], references: [id])
-  status        String   @default("Active") // Active, Inactive
+  role_id       Int
+  role          Role           @relation(fields: [role_id], references: [id])
+  status        String         @default("ACTIVE")
   last_login    DateTime?
-  created_at    DateTime @default(now())
-  updated_at    DateTime @updatedAt
+  created_at    DateTime       @default(now())
+  updated_at    DateTime       @updatedAt
+  auditLogs     AuditLog[]
+  assignedRegs  StudentRegistration[] @relation("AssignedRegs")
+  assignedEnquiries CourseEnquiry[] @relation("AssignedEnquiries")
+  assignedContacts ContactMessage[] @relation("AssignedContacts")
+  assignedCorp  CorporateLead[]  @relation("AssignedCorp")
+  assignedFran  FranchiseLead[]  @relation("AssignedFran")
   blogs         Blog[]
   media         Media[]
-  audit_logs    AuditLog[]
+
+  @@map("users")
 }
 
 model Role {
-  id               String           @id @default(uuid())
-  name             String           @unique // SUPER_ADMIN, ADMIN, EDITOR, ADMISSIONS_STAFF
-  created_at       DateTime         @default(now())
-  users            User[]
-  role_permissions RolePermission[]
+  id              Int              @id @default(autoincrement())
+  name            String           @unique
+  created_at      DateTime         @default(now())
+  users           User[]
+  rolePermissions RolePermission[]
+
+  @@map("roles")
 }
 
 model Permission {
-  id               String           @id @default(uuid())
-  name             String           @unique
-  role_permissions RolePermission[]
+  id              Int              @id @default(autoincrement())
+  name            String           @unique
+  rolePermissions RolePermission[]
+
+  @@map("permissions")
 }
 
 model RolePermission {
-  role_id       String
-  permission_id String
+  id            Int        @id @default(autoincrement())
+  role_id       Int
+  permission_id Int
   role          Role       @relation(fields: [role_id], references: [id], onDelete: Cascade)
   permission    Permission @relation(fields: [permission_id], references: [id], onDelete: Cascade)
 
-  @@id([role_id, permission_id])
+  @@unique([role_id, permission_id])
+  @@map("role_permissions")
+}
+
+model CourseCategory {
+  id          Int                 @id @default(autoincrement())
+  name        String
+  slug        String              @unique
+  description String?
+  status      String              @default("ACTIVE")
+  mappings    CourseCategoryMap[]
+
+  @@map("course_categories")
 }
 
 model Course {
-  id                   String               @id @default(uuid())
+  id                   Int                  @id @default(autoincrement())
   title                String
   slug                 String               @unique
   short_description    String
   long_description     String
   duration             String
   certification        String
-  placement_assistance String
+  placement_assistance String               @default("Yes")
   online_available     Boolean              @default(true)
   classroom_available  Boolean              @default(true)
   hero_image           String?
   brochure_url         String?
-  status               String               @default("Published") // Draft, Published
+  status               String               @default("PUBLISHED")
   seo_title            String?
   seo_description      String?
   created_at           DateTime             @default(now())
   updated_at           DateTime             @updatedAt
-
-  category_maps        CourseCategoryMap[]
+  categories           CourseCategoryMap[]
   curriculum           CourseCurriculum[]
   tools                CourseTool[]
   mentors              CourseMentor[]
@@ -77,88 +100,95 @@ model Course {
   alumni               Alumni[]
   placements           Placement[]
   testimonials         Testimonial[]
-}
 
-model CourseCategory {
-  id          String              @id @default(uuid())
-  name        String
-  slug        String              @unique
-  description String?
-  status      String              @default("Active")
-  courses     CourseCategoryMap[]
+  @@map("courses")
 }
 
 model CourseCategoryMap {
-  course_id   String
-  category_id String
+  id          Int            @id @default(autoincrement())
+  course_id   Int
+  category_id Int
   course      Course         @relation(fields: [course_id], references: [id], onDelete: Cascade)
   category    CourseCategory @relation(fields: [category_id], references: [id], onDelete: Cascade)
 
-  @@id([course_id, category_id])
+  @@unique([course_id, category_id])
+  @@map("course_category_map")
 }
 
 model CourseCurriculum {
-  id          String   @id @default(uuid())
-  course_id   String
-  course      Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  id          Int      @id @default(autoincrement())
+  course_id   Int
   title       String
   description String
   duration    String?
   sort_order  Int      @default(0)
+  course      Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+
+  @@map("course_curriculum")
 }
 
 model CourseTool {
-  id          String   @id @default(uuid())
-  course_id   String
-  course      Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  id          Int      @id @default(autoincrement())
+  course_id   Int
   tool_name   String
   tool_icon   String?
   description String?
   sort_order  Int      @default(0)
+  course      Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+
+  @@map("course_tools")
 }
 
 model CourseMentor {
-  id           String   @id @default(uuid())
-  course_id    String
-  course       Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  id           Int      @id @default(autoincrement())
+  course_id    Int
   mentor_name  String
   mentor_image String?
   designation  String
   bio          String?
   sort_order   Int      @default(0)
+  course       Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+
+  @@map("course_mentors")
 }
 
 model CourseCareer {
-  id          String   @id @default(uuid())
-  course_id   String
-  course      Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  id          Int      @id @default(autoincrement())
+  course_id   Int
   career_name String
   industry    String?
   description String?
+  course      Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+
+  @@map("course_careers")
 }
 
 model CourseProject {
-  id          String   @id @default(uuid())
-  course_id   String
-  course      Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  id          Int      @id @default(autoincrement())
+  course_id   Int
   title       String
-  description String
+  description String?
   image_url   String?
   video_url   String?
+  course      Course   @relation(fields: [course_id], references: [id], onDelete: Cascade)
+
+  @@map("course_projects")
 }
 
 model Faq {
-  id         String   @id @default(uuid())
-  course_id  String?
-  course     Course?  @relation(fields: [course_id], references: [id], onDelete: Cascade)
+  id         Int      @id @default(autoincrement())
+  course_id  Int?
   question   String
   answer     String
   sort_order Int      @default(0)
-  status     String   @default("Published")
+  status     String   @default("ACTIVE")
+  course     Course?  @relation(fields: [course_id], references: [id], onDelete: Cascade)
+
+  @@map("faqs")
 }
 
 model StudentRegistration {
-  id              String   @id @default(uuid())
+  id              Int      @id @default(autoincrement())
   name            String
   father_name     String?
   gender          String
@@ -166,36 +196,42 @@ model StudentRegistration {
   email           String
   phone           String
   alternate_phone String?
-  course_id       String
+  course_id       Int
   course          Course   @relation(fields: [course_id], references: [id])
   address1        String
   address2        String?
   city            String
   state           String
   country         String   @default("India")
-  status          String   @default("New") // New, Contacted, Follow-up, Converted, Rejected, Completed
+  status          String   @default("New")
   admin_notes     String?
-  assigned_to     String?
+  assigned_to     Int?
+  assignee        User?    @relation("AssignedRegs", fields: [assigned_to], references: [id])
   created_at      DateTime @default(now())
   updated_at      DateTime @updatedAt
+
+  @@map("student_registrations")
 }
 
 model CourseEnquiry {
-  id          String   @id @default(uuid())
+  id          Int      @id @default(autoincrement())
   name        String
   email       String
   phone       String
-  course_id   String?
-  course      Course?  @relation(fields: [course_id], references: [id])
-  message     String
-  status      String   @default("New") // New, Contacted, Follow-up, Converted, Closed, Rejected
-  assigned_to String?
+  course_id   Int
+  course      Course   @relation(fields: [course_id], references: [id])
+  message     String?
+  status      String   @default("New")
+  assigned_to Int?
+  assignee    User?    @relation("AssignedEnquiries", fields: [assigned_to], references: [id])
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
+
+  @@map("course_enquiries")
 }
 
 model ContactMessage {
-  id          String   @id @default(uuid())
+  id          Int      @id @default(autoincrement())
   name        String
   email       String
   mobile      String
@@ -203,30 +239,36 @@ model ContactMessage {
   consent     Boolean  @default(true)
   status      String   @default("New")
   admin_notes String?
-  assigned_to String?
+  assigned_to Int?
+  assignee    User?    @relation("AssignedContacts", fields: [assigned_to], references: [id])
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
+
+  @@map("contact_messages")
 }
 
 model CorporateLead {
-  id                String   @id @default(uuid())
-  company_name      String
-  contact_name      String
-  phone             String
-  email             String
-  program           String
+  id                 Int      @id @default(autoincrement())
+  company_name       String
+  contact_name       String
+  phone              String
+  email              String
+  program            String
   estimated_trainees Int?
-  course_timeline   String?
-  message           String?
-  status            String   @default("New")
-  assigned_to       String?
-  admin_notes       String?
-  created_at        DateTime @default(now())
-  updated_at        DateTime @updatedAt
+  course_timeline    String?
+  message            String?
+  status             String   @default("New")
+  assigned_to        Int?
+  assignee           User?    @relation("AssignedCorp", fields: [assigned_to], references: [id])
+  admin_notes        String?
+  created_at         DateTime @default(now())
+  updated_at         DateTime @updatedAt
+
+  @@map("corporate_leads")
 }
 
 model FranchiseLead {
-  id          String   @id @default(uuid())
+  id          Int      @id @default(autoincrement())
   name        String
   phone       String
   email       String
@@ -234,133 +276,154 @@ model FranchiseLead {
   location    String
   message     String?
   status      String   @default("New")
-  assigned_to String?
+  assigned_to Int?
+  assignee    User?    @relation("AssignedFran", fields: [assigned_to], references: [id])
   admin_notes String?
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
+
+  @@map("franchise_leads")
 }
 
 model StudentWorkCategory {
-  id            String        @id @default(uuid())
-  name          String
-  slug          String        @unique
-  student_works StudentWork[]
+  id           Int           @id @default(autoincrement())
+  name         String
+  slug         String        @unique
+  studentWorks StudentWork[]
+
+  @@map("student_work_categories")
 }
 
 model StudentWork {
-  id           String              @id @default(uuid())
+  id           Int                 @id @default(autoincrement())
   title        String
   student_name String
-  category_id  String
+  category_id  Int
   category     StudentWorkCategory @relation(fields: [category_id], references: [id])
   description  String?
   image_url    String?
   video_url    String?
   featured     Boolean             @default(false)
-  status       String              @default("Published")
+  status       String              @default("PUBLISHED")
   created_at   DateTime            @default(now())
   updated_at   DateTime            @updatedAt
+
+  @@map("student_works")
 }
 
 model Alumni {
-  id              String   @id @default(uuid())
+  id              Int      @id @default(autoincrement())
   name            String
   photo           String?
-  course_id       String?
+  course_id       Int?
   course          Course?  @relation(fields: [course_id], references: [id])
   designation     String
   company         String
   graduation_year Int?
   story           String?
   featured        Boolean  @default(false)
-  status          String   @default("Published")
+  status          String   @default("PUBLISHED")
   created_at      DateTime @default(now())
   updated_at      DateTime @updatedAt
+
+  @@map("alumni")
 }
 
 model Placement {
-  id           String   @id @default(uuid())
-  student_name String
+  id            Int      @id @default(autoincrement())
+  student_name  String
   student_photo String?
-  course_id    String?
-  course       Course?  @relation(fields: [course_id], references: [id])
-  job_title    String
-  company      String
-  company_logo String?
-  year         Int?
-  description  String?
-  status       String   @default("Published")
-  created_at   DateTime @default(now())
-  updated_at   DateTime @updatedAt
+  course_id     Int?
+  course        Course?  @relation(fields: [course_id], references: [id])
+  job_title     String
+  company       String
+  company_logo  String?
+  year          Int
+  description   String?
+  status        String   @default("PUBLISHED")
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  @@map("placements")
 }
 
 model Testimonial {
-  id          String   @id @default(uuid())
+  id          Int      @id @default(autoincrement())
   name        String
   photo       String?
-  course_id   String?
+  course_id   Int?
   course      Course?  @relation(fields: [course_id], references: [id])
   designation String?
   company     String?
   testimonial String
   rating      Int      @default(5)
   featured    Boolean  @default(false)
-  status      String   @default("Published")
+  status      String   @default("PUBLISHED")
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
+
+  @@map("testimonials")
 }
 
 model BlogCategory {
-  id          String   @id @default(uuid())
+  id          Int     @id @default(autoincrement())
   name        String
-  slug        String   @unique
+  slug        String  @unique
   description String?
   blogs       Blog[]
+
+  @@map("blog_categories")
 }
 
 model Blog {
-  id              String       @id @default(uuid())
+  id              Int          @id @default(autoincrement())
   title           String
   slug            String       @unique
-  excerpt         String
+  excerpt         String?
   content         String
   featured_image  String?
-  category_id     String
+  category_id     Int
   category        BlogCategory @relation(fields: [category_id], references: [id])
-  author_id       String?
+  author_id       Int?
   author          User?        @relation(fields: [author_id], references: [id])
-  tags            String?      // comma-separated
+  tags            String?
   seo_title       String?
   seo_description String?
   published       Boolean      @default(true)
   published_at    DateTime     @default(now())
   created_at      DateTime     @default(now())
   updated_at      DateTime     @updatedAt
+
+  @@map("blogs")
 }
 
 model Media {
-  id          String   @id @default(uuid())
+  id          Int      @id @default(autoincrement())
   filename    String
   url         String
   type        String
   mime_type   String
   size        Int
   alt_text    String?
-  folder      String   @default("uploads")
-  uploaded_by String?
+  folder      String?  @default("general")
+  uploaded_by Int?
   uploader    User?    @relation(fields: [uploaded_by], references: [id])
   created_at  DateTime @default(now())
+
+  @@map("media")
 }
 
 model Setting {
-  id         String   @id @default(uuid())
+  id         Int      @id @default(autoincrement())
   key        String   @unique
   value      String
   updated_at DateTime @updatedAt
+
+  @@map("settings")
 }
 
 model SeoMetadata {
-  id             String   @id @default(uuid())
+  id             Int      @id @default(autoincrement())
   page           String   @unique
   title          String
   description    String
@@ -371,15 +434,19 @@ model SeoMetadata {
   og_image       String?
   created_at     DateTime @default(now())
   updated_at     DateTime @updatedAt
+
+  @@map("seo_metadata")
 }
 
 model AuditLog {
-  id         String   @id @default(uuid())
-  user_id    String?
+  id         Int      @id @default(autoincrement())
+  user_id    Int?
   user       User?    @relation(fields: [user_id], references: [id])
   action     String
   entity     String
-  entity_id  String?
+  entity_id  Int?
   ip_address String?
   created_at DateTime @default(now())
+
+  @@map("audit_logs")
 }
