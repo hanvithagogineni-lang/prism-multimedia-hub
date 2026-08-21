@@ -1759,6 +1759,30 @@ const INFO_CONTENT = {
       'Practical problem-solving mindset',
     ],
   },
+  'privacy-policies': {
+    tag: 'Legal Information',
+    title: 'Privacy Policy',
+    summary: 'This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights.',
+    points: [
+      'Refers to: Prism Educational Society, #403, 4th Floor, Delta Chambers, Ameerpet, Hyderabad',
+      'Email: info@prismmultimedia.com | Phone: +91 9701334133',
+      'Usage Data: Collected automatically when using the website (IP address, browser type, pages visited)',
+      'Cookies: Small tracking files used to analyze browsing patterns and improve service delivery',
+      'Data Protection: Your personal data is never sold to third parties and is used solely for course counseling',
+    ],
+  },
+  'student-terms': {
+    tag: 'Academic Guidelines',
+    title: 'Student Terms & Conditions',
+    summary: 'These Student Terms and Conditions govern the relationship between Prism Multimedia and enrolled students. By enrolling in any course or training program offered by the Institute, you agree to abide by these Terms.',
+    points: [
+      'Enrollment: Requires completion of registration, submission of documents, and payment confirmation.',
+      'Fees & Payments: Fees are subject to periodic review. Payments must be completed before course commencement.',
+      'Course Content: Prism Multimedia reserves the right to update curriculum to align with industry standards.',
+      'Code of Conduct: Academic integrity, regular attendance, and professional behavior are strictly required.',
+      'Intellectual Property: All course material and software assets remain the exclusive property of Prism Multimedia.',
+    ],
+  },
 };
 
 function initInfoCards() {
